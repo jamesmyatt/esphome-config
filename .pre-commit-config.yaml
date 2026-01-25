@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks # misc hooks
+    rev: v6.0.0
+    hooks:
+      - id: forbid-submodules
+      - id: check-case-conflict
+      - id: check-illegal-windows-names
+      - id: check-symlinks
+      - id: end-of-file-fixer
+        exclude: \.svg$
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: check-json
+        exclude: (.vscode|.devcontainer)
+      - id: check-toml
+      - id: check-yaml
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: v3.8.1
+    hooks:
+      - id: prettier
+        exclude: \.vscode
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 3.6.0
+    hooks:
+      - id: editorconfig-checker
+        alias: ec
+        exclude: \.svg$
