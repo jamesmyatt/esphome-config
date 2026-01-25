@@ -24,9 +24,9 @@ output:
 # Lights
 light:
   - platform: monochromatic
-    output: pwm_builtin
+    output: out_builtin
     name: "Status"
-    id: out_builtin
+    id: led_builtin
     restore_mode: RESTORE_DEFAULT_OFF
     entity_category: config
 
