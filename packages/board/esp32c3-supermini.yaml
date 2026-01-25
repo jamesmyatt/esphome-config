@@ -15,32 +15,32 @@ esphome:
 
 # Outputs
 output:
-  - platform: ledc
+  - id: out_builtin
+    platform: ledc
     pin:
       number: ${pin_builtin_led}
       inverted: true
       ignore_strapping_warning: true
     frequency: 1000 Hz
-    id: out_builtin
 
 # Lights
 light:
-  - platform: monochromatic
+  - id: led_builtin
+    platform: monochromatic
     output: out_builtin
     name: "Status"
-    id: led_builtin
     restore_mode: RESTORE_DEFAULT_OFF
     entity_category: config
 
 # Buttons
 binary_sensor:
-  - platform: gpio
+  - id: btn_boot
+    platform: gpio
     pin:
       number: ${pin_boot}
       mode: INPUT_PULLUP
       inverted: true
       ignore_strapping_warning: true
-    id: btn_boot
     name: "Boot"
     filters:
       - delayed_off: 10ms # debounce
