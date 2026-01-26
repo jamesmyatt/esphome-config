@@ -1,0 +1,105 @@
+# References:
+#  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
+#  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
+
+esphome:
+  comment: ESP32 Audio Kit
+
+packages:
+  - !include esp32-a1s.yaml
+
+switch:
+  - id: mute_switch
+    platform: gpio
+    pin: GPIO21
+    name: "AMP Switch"
+    restore_mode: ALWAYS_ON
+
+binary_sensor:
+  - id: jack
+    platform: gpio
+    pin:
+      number: GPIO39
+      inverted: true
+      mode:
+        input: true
+    name: "Jack"
+    filters: # needs debouncing
+      - delayed_on: 200ms
+      - delayed_off: 200ms
+
+  # Note that GPIO0 is used by the I2S bus
+
+  - id: key_1
+    platform: gpio
+    pin:
+      number: GPIO36
+      inverted: true
+    name: "Key 1"
+    filters:
+      - delayed_off: 10ms
+  - id: key_2
+    platform: gpio
+    pin:
+      number: GPIO13
+      inverted: true
+    name: "Key 2"
+    filters:
+      - delayed_off: 10ms
+  - id: key_3
+    platform: gpio
+    pin:
+      number: GPIO19
+      inverted: true
+    name: "Key 3"
+    filters:
+      - delayed_off: 10ms
+    # Also connected to bottom LED
+  - id: key_4
+    platform: gpio
+    pin:
+      number: GPIO23
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Key 4"
+    filters:
+      - delayed_off: 10ms
+  - id: key_5
+    platform: gpio
+    pin:
+      number: GPIO18
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Key 5"
+    filters:
+      - delayed_off: 10ms
+  - id: key_6
+    platform: gpio
+    pin:
+      number: GPIO5
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: "Key 6"
+    filters:
+      - delayed_off: 10ms
+
+output:
+  - id: pwm_top
+    platform: ledc
+    pin:
+      number: GPIO22
+      inverted: true
+    frequency: 1000 Hz
+
+light:
+  - id: led_top
+    platform: monochromatic
+    output: pwm_top
+    name: Red # Called "Green" in squeezelite-esp32
+    restore_mode: RESTORE_DEFAULT_OFF
