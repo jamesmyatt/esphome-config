@@ -1,0 +1,54 @@
+# References:
+#  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
+#  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
+
+packages:
+  - !include esp32-wrover.yaml
+
+i2c:
+  - id: a1s_i2c_internal
+    sda: GPIO33
+    scl: GPIO32
+    frequency: 100kHz
+    scan: false
+
+audio_dac:
+  - id: es8388_dac
+    platform: es8388
+    i2c_id: a1s_i2c_internal
+
+select:
+  - platform: es8388
+    es8388_id: es8388_dac
+    dac_output:
+      name: "DAC Output"
+    adc_input_mic:
+      name: "ADC Input MIC"
+
+i2s_audio:
+  - id: a1s_i2s_internal
+    i2s_lrclk_pin: GPIO25
+    i2s_bclk_pin: GPIO27
+    i2s_mclk_pin: GPIO0
+
+speaker:
+  - id: speaker_id
+    platform: i2s_audio
+    i2s_audio_id: a1s_i2s_internal
+    sample_rate: 48000
+    i2s_dout_pin: GPIO26
+    bits_per_sample: 32bit
+    dac_type: external
+    audio_dac: es8388_dac
+    channel: stereo
+    buffer_duration: 100ms
+
+microphone:
+  - id: mic_id
+    platform: i2s_audio
+    i2s_audio_id: a1s_i2s_internal
+    i2s_din_pin: GPIO35
+    adc_type: external
+    pdm: false
+    sample_rate: 16000
+    bits_per_sample: 16bit

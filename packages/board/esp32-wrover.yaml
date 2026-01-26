@@ -1,0 +1,8 @@
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+psram:
+  mode: quad
+  speed: 80MHz
