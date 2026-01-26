@@ -1,0 +1,10 @@
+defaults:
+  name: ESPHome
+
+# See https://esphome.io/components/mqtt/
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  topic_prefix: "esphome/${name}"

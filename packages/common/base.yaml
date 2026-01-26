@@ -1,0 +1,46 @@
+# Minimal ESPHome-with-Home-Assistant configuration
+defaults:
+  name: ESPHome
+
+esphome:
+  name: ${name}
+  friendly_name: "${name}"
+  min_version: 2025.5.0
+
+logger:
+
+api:
+
+mqtt:
+  discovery: false
+
+ota:
+  - id: ota_esphome
+    platform: esphome
+    password: !secret ota_password
+
+time:
+  - id: esptime
+    platform: homeassistant
+    timezone: !secret timezone
+
+button:
+  - id: btn_restart
+    platform: restart
+    name: "Restart"
+  - id: btn_safe_mode
+    platform: safe_mode
+    name: "Safe Mode Boot"
+  - id: btn_factory_reset
+    platform: factory_reset
+    name: "Factory Reset"
+    disabled_by_default: true
+
+sensor:
+  - id: sensor_uptime
+    platform: uptime
+    name: "Uptime"
+
+text_sensor:
+  - platform: version
+    name: "ESPHome Version"

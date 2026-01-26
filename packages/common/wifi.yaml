@@ -1,0 +1,25 @@
+# Shared WiFi with sensors
+wifi:
+  fast_connect: true
+  min_auth_mode: WPA2
+  networks:
+    - ssid: !secret wifi_ssid
+      password: !secret wifi_password
+      hidden: !secret wifi_hidden
+
+sensor:
+  - id: sensor_wifi_signal
+    platform: wifi_signal
+    name: "Signal Strength"
+    update_interval: 60s
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      id: sensor_wifi_ip
+      name: "WiFi IP Address"
+      internal: true
+    ssid:
+      id: sensor_wifi_ssid
+      name: "WiFi SSID"
+      internal: true
