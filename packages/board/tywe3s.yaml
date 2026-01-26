@@ -1,0 +1,24 @@
+# Tuya TYWE3S module
+# https://developer.tuya.com/en/docs/iot/wifie3smodule?id=K9605ua1cx9tv
+
+# Chip type:          ESP8266EX
+# Features:           Wi-Fi, 160MHz
+# Crystal frequency:  26MHz
+
+# SPI Speed : 40MHz
+# SPI Mode : QIO
+# SPI Flash Size & Map: 8Mbit(512KB+512KB)
+
+# Manufacturer: c8
+# Device: 4015
+# Detected flash size: 2MB
+
+esp8266:
+  board: esp01_1m
+  board_flash_mode: qio
+
+esphome:
+  platformio_options:
+    board_build.f_cpu: 160000000L # 160 MHz
+    board_build.f_flash: 20000000L # 2 MB Chip
+    board_build.ldscript: eagle.flash.2m1m.ld # 1 MB SPIFFS
