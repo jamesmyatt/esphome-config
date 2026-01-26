@@ -44,3 +44,4 @@ binary_sensor:
     name: "Boot"
     filters:
       - delayed_off: 10ms # debounce
+    entity_category: diagnostic
