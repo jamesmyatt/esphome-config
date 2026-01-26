@@ -1,0 +1,50 @@
+defaults:
+  pin_ch1: GPIO1
+  pin_ch2: GPIO0
+  pin_ch3: GPIO7
+  pin_ch4: GPIO3
+  id_base: light
+
+output:
+  - id: ${id_base}_ch1_out
+    platform: ledc
+    pin: ${pin_ch1}
+    frequency: 1000 Hz
+    phase_angle: 0°
+  - id: ${id_base}_ch2_out
+    platform: ledc
+    pin: ${pin_ch2}
+    frequency: 1000 Hz
+    phase_angle: 90°
+  - id: ${id_base}_ch3_out
+    platform: ledc
+    pin: ${pin_ch3}
+    frequency: 1000 Hz
+    phase_angle: 180°
+  - id: ${id_base}_ch4_out
+    platform: ledc
+    pin: ${pin_ch4}
+    frequency: 1000 Hz
+    phase_angle: 270°
+
+light:
+  - id: ${id_base}_ch1
+    platform: monochromatic
+    output: ${id_base}_ch1_out
+    name: "Ch1"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - id: ${id_base}_ch2
+    platform: monochromatic
+    output: ${id_base}_ch2_out
+    name: "Ch2"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - id: ${id_base}_ch3
+    platform: monochromatic
+    output: ${id_base}_ch3_out
+    name: "Ch3"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - id: ${id_base}_ch4
+    platform: monochromatic
+    output: ${id_base}_ch4_out
+    name: "Ch4"
+    restore_mode: RESTORE_DEFAULT_OFF
