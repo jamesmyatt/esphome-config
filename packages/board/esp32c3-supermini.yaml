@@ -29,7 +29,7 @@ light:
     platform: monochromatic
     output: out_builtin
     name: "Status"
-    restore_mode: RESTORE_DEFAULT_OFF
+    restore_mode: ALWAYS_OFF
     entity_category: config
 
 # Buttons
