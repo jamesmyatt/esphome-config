@@ -1,3 +1,4 @@
+# Based on https://github.com/iMicknl/LoctekMotion_IoT/blob/main/packages/office-desk-esp32.yaml
 defaults:
   tx_pin: GPIO21
   rx_pin: GPIO20
@@ -11,6 +12,17 @@ external_components:
       url: https://www.github.com/iMicknl/LoctekMotion_IoT
       ref: main
     components: [loctekmotion_desk_height]
+
+esphome:
+  # Delay UART interaction on boot to give the desk controller time to initialize.
+  # After the delay, wake the desk by sending the "M" command to request the current height.
+  on_boot:
+    - priority: -100
+      then:
+        - delay: 10s
+        - button.press: button_wake_screen
+        - delay: 300ms
+        - button.press: button_m
 
 uart:
   - id: desk_uart
@@ -26,9 +38,11 @@ sensor:
       - below: ${min_height}
         then:
           - switch.turn_off: switch_down
+          - button.press: button_wake_screen
       - above: ${max_height}
         then:
           - switch.turn_off: switch_up
+          - button.press: button_wake_screen
     on_value:
       then:
         - cover.template.publish:
@@ -43,7 +57,7 @@ sensor:
 switch:
   - id: switch_screen
     platform: gpio
-    name: "Virtual Screen" # PIN20
+    name: "Virtual Screen"
     pin:
       number: ${screen_pin}
       mode: OUTPUT
@@ -59,6 +73,9 @@ switch:
     uart_id: desk_uart
     send_every: 108ms
     internal: true
+    on_turn_on:
+      - button.press: button_wake_screen
+      - delay: 200ms
 
   - id: switch_down
     platform: uart
@@ -68,10 +85,13 @@ switch:
     uart_id: desk_uart
     send_every: 108ms
     internal: true
+    on_turn_on:
+      - button.press: button_wake_screen
+      - delay: 200ms
 
   - id: switch_alarm
     platform: uart
-    name: "Alarm off"
+    name: "Alarm Off"
     icon: mdi:alarm
     data: [0x9b, 0x06, 0x02, 0x40, 0x00, 0xAC, 0x90, 0x9d]
     uart_id: desk_uart
@@ -99,6 +119,8 @@ button:
     name: "Preset 1"
     icon: mdi:numeric-1-box
     on_press:
+      - button.press: button_wake_screen
+      - delay: 200ms
       - uart.write:
           id: desk_uart
           data: [0x9b, 0x06, 0x02, 0x04, 0x00, 0xac, 0xa3, 0x9d]
@@ -108,6 +130,8 @@ button:
     name: "Preset 2"
     icon: mdi:numeric-2-box
     on_press:
+      - button.press: button_wake_screen
+      - delay: 200ms
       - uart.write:
           id: desk_uart
           data: [0x9b, 0x06, 0x02, 0x08, 0x00, 0xac, 0xa6, 0x9d]
@@ -117,6 +141,8 @@ button:
     name: "Sit" # Preset 3 on some control panels
     icon: mdi:chair-rolling
     on_press:
+      - button.press: button_wake_screen
+      - delay: 200ms
       - uart.write:
           id: desk_uart
           data: [0x9b, 0x06, 0x02, 0x00, 0x01, 0xac, 0x60, 0x9d]
@@ -126,6 +152,8 @@ button:
     name: "Stand" # Preset 4 on some control panels
     icon: mdi:human-handsup
     on_press:
+      - button.press: button_wake_screen
+      - delay: 200ms
       - uart.write:
           id: desk_uart
           data: [0x9b, 0x06, 0x02, 0x10, 0x00, 0xac, 0xac, 0x9d]
@@ -186,6 +214,7 @@ cover:
     stop_action:
       - switch.turn_off: switch_up
       - switch.turn_off: switch_down
+      - button.press: button_wake_screen
     open_action:
       - switch.turn_off: switch_down
       - switch.turn_on: switch_up
