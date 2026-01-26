@@ -104,6 +104,7 @@ binary_sensor:
       mode:
         input: true
         pullup: true
+      ignore_strapping_warning: true
     name: "Key 6"
     filters:
       - delayed_off: 10ms
