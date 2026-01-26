@@ -7,4 +7,5 @@ mqtt:
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
+  discovery: false
   topic_prefix: "esphome/${name}"

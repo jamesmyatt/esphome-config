@@ -11,9 +11,6 @@ logger:
 
 api:
 
-mqtt:
-  discovery: false
-
 ota:
   - id: ota_esphome
     platform: esphome
