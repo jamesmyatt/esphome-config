@@ -28,7 +28,7 @@ output:
     phase_angle: 270°
 
 light:
-  - id: ${light_rgbw}
+  - id: ${id_light}
     platform: rgbw
     name: Light
     red: ${id_light}_r
