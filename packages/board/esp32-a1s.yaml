@@ -17,6 +17,9 @@ defaults:
 packages:
   - !include esp32-wrover.yaml
 
+psram:
+  ignore_not_found: false # enable aggressive optimisations
+
 i2c:
   - id: a1s_i2c_internal
     sda: GPIO33
