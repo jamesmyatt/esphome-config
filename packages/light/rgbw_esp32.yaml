@@ -1,0 +1,39 @@
+defaults:
+  pin_green: GPIO1
+  pin_red: GPIO0
+  pin_blue: GPIO7
+  pin_white: GPIO3
+  id_light: light_rgbw
+
+output:
+  - id: ${id_light}_g
+    platform: ledc
+    pin: ${pin_green}
+    frequency: 1000 Hz
+    phase_angle: 0°
+  - id: ${id_light}_r
+    platform: ledc
+    pin: ${pin_red}
+    frequency: 1000 Hz
+    phase_angle: 90°
+  - id: ${id_light}_b
+    platform: ledc
+    pin: ${pin_blue}
+    frequency: 1000 Hz
+    phase_angle: 180°
+  - id: ${id_light}_w
+    platform: ledc
+    pin: ${pin_white}
+    frequency: 1000 Hz
+    phase_angle: 270°
+
+light:
+  - id: ${light_rgbw}
+    platform: rgbw
+    name: Light
+    red: ${id_light}_r
+    green: ${id_light}_g
+    blue: ${id_light}_b
+    white: ${id_light}_w
+    color_interlock: false
+    restore_mode: RESTORE_DEFAULT_OFF
