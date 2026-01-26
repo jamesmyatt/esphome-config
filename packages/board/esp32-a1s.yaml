@@ -1,6 +1,18 @@
 # References:
 #  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
 #  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
+#
+# i2c	scl	32	Configuration
+# i2c	sda	33	Configuration
+# dac	bck	27	Configuration
+# dac	ws	25	Configuration
+# dac	do	26	Configuration
+# dac	sda	33	Configuration
+# dac	scl	32	Configuration
+
+defaults:
+  speaker_id: speaker_id
+  mic_id: mic_id
 
 packages:
   - !include esp32-wrover.yaml
@@ -32,7 +44,7 @@ i2s_audio:
     i2s_mclk_pin: GPIO0
 
 speaker:
-  - id: speaker_id
+  - id: ${speaker_id}
     platform: i2s_audio
     i2s_audio_id: a1s_i2s_internal
     sample_rate: 48000
@@ -44,7 +56,7 @@ speaker:
     buffer_duration: 100ms
 
 microphone:
-  - id: mic_id
+  - id: ${mic_id}
     platform: i2s_audio
     i2s_audio_id: a1s_i2s_internal
     i2s_din_pin: GPIO35

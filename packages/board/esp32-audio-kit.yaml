@@ -1,12 +1,31 @@
 # References:
 #  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
 #  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
+#
+# other	amp	21	Configuration
+# other	jack	39	Configuration
+# other	green	22	Configuration
+# i2c	scl	32	Configuration
+# i2c	sda	33	Configuration
+# dac	bck	27	Configuration
+# dac	ws	25	Configuration
+# dac	do	26	Configuration
+# dac	sda	33	Configuration
+# dac	scl	32	Configuration
+
+defaults:
+  speaker_id: speaker_id
+  mic_id: mic_id
 
 esphome:
   comment: ESP32 Audio Kit
 
 packages:
-  - !include esp32-a1s.yaml
+  - !include
+    file: esp32-a1s.yaml
+    vars:
+      speaker_id: ${speaker_id}
+      mic_id: ${mic_id}
 
 switch:
   - id: mute_switch
