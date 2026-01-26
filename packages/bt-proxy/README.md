@@ -8,6 +8,8 @@ See <https://github.com/esphome/bluetooth-proxies>.
 
 ```yml
 packages:
- bt_proxy: >-
-  github://jamesmyatt/esphome-config/packages/bt-proxy/esp32.yaml@main
+ - url: https://github.com/jamesmyatt/esphome-config
+   files:
+    - packages/bt-proxy/esp32.yaml
+   ref: main
 ```
