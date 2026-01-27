@@ -10,22 +10,22 @@ output:
     platform: ledc
     pin: ${pin_green}
     frequency: 1000 Hz
-    phase_angle: 0°
+    phase_angle: 90°
   - id: ${id_light}_r
     platform: ledc
     pin: ${pin_red}
     frequency: 1000 Hz
-    phase_angle: 90°
+    phase_angle: 180°
   - id: ${id_light}_b
     platform: ledc
     pin: ${pin_blue}
     frequency: 1000 Hz
-    phase_angle: 180°
+    phase_angle: 270°
   - id: ${id_light}_w
     platform: ledc
     pin: ${pin_white}
     frequency: 1000 Hz
-    phase_angle: 270°
+    phase_angle: 0°
 
 light:
   - id: ${id_light}
