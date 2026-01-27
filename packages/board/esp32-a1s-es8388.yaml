@@ -1,14 +1,8 @@
 # References:
 #  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
-#  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
 #
-# i2c	scl	32	Configuration
-# i2c	sda	33	Configuration
-# dac	bck	27	Configuration
-# dac	ws	25	Configuration
-# dac	do	26	Configuration
-# dac	sda	33	Configuration
-# dac	scl	32	Configuration
+#  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
+#     dac_config: model=ES8388,bck=27,ws=25,do=26,sda=33,scl=32,i2c=16
 
 defaults:
   speaker_id: speaker_id
@@ -31,13 +25,16 @@ audio_dac:
   - id: es8388_dac
     platform: es8388
     i2c_id: a1s_i2c_internal
+    address: 16
 
 select:
   - platform: es8388
     es8388_id: es8388_dac
     dac_output:
+      id: es8388_dac_output
       name: "DAC Output"
     adc_input_mic:
+      id: es8388_adc_input
       name: "ADC Input MIC"
 
 i2s_audio:

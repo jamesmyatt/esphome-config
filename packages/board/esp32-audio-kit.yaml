@@ -1,28 +1,17 @@
 # References:
 #  - https://esphome.io/components/audio_dac/es8388/#configuration-examples
 #  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
-#
-# other	amp	21	Configuration
-# other	jack	39	Configuration
-# other	green	22	Configuration
-# i2c	scl	32	Configuration
-# i2c	sda	33	Configuration
-# dac	bck	27	Configuration
-# dac	ws	25	Configuration
-# dac	do	26	Configuration
-# dac	sda	33	Configuration
-# dac	scl	32	Configuration
 
 defaults:
   speaker_id: speaker_id
   mic_id: mic_id
 
 esphome:
-  comment: ESP32 Audio Kit
+  comment: ESP32 Audio Kit (v2.2)
 
 packages:
   - !include
-    file: esp32-a1s.yaml
+    file: esp32-a1s-es8388.yaml
     vars:
       speaker_id: ${speaker_id}
       mic_id: ${mic_id}
@@ -33,6 +22,7 @@ switch:
     pin: GPIO21
     name: "AMP Switch"
     restore_mode: ALWAYS_ON
+    entity_category: config
 
 binary_sensor:
   - id: jack
@@ -46,6 +36,7 @@ binary_sensor:
     filters: # needs debouncing
       - delayed_on: 200ms
       - delayed_off: 200ms
+    entity_category: diagnostic
 
   # Note that GPIO0 is used by the I2S bus
 
@@ -110,16 +101,20 @@ binary_sensor:
       - delayed_off: 10ms
 
 output:
-  - id: pwm_top
+  - # Top LED
+    id: out_builtin
     platform: ledc
     pin:
       number: GPIO22
       inverted: true
     frequency: 1000 Hz
+  # Bottom LED is shared with Key 3
 
 light:
-  - id: led_top
+  - # Top LED - called "Green" in squeezelite-esp32 config
+    id: led_builtin
     platform: monochromatic
-    output: pwm_top
-    name: Red # Called "Green" in squeezelite-esp32
+    output: out_builtin
+    name: Status
     restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: diagnostic
