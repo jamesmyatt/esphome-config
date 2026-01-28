@@ -1,0 +1,14 @@
+[project]
+name = "esphome-devices"
+version = "0"
+description = "ESPHome configuration packages and devices."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "esphome~=2026.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]
