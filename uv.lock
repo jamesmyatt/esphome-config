@@ -458,16 +458,7 @@ wheels = [
 ]
 
 [[package]]
-name = "esphome-dashboard"
-version = "20260110.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/9d/6d/2db7a90a793a831908feea9ffd9c2b4afddff2761b5ecf64289dccc1820c/esphome_dashboard-20260110.0.tar.gz", hash = "sha256:1e2291d5eb09af44145f346a1b7cb2f7eba80025eedaa2ce1075b841d5e92d13", size = 5744984, upload-time = "2026-01-09T18:38:46.18Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/b6/62/36646f6ed1272fa41a59e828d57858304503b4388222c91937a8fe215c1b/esphome_dashboard-20260110.0-py3-none-any.whl", hash = "sha256:fb452625a5484e271d3ebb7efcd02d8c6f16855957f6013320205f06edbf15b7", size = 5844742, upload-time = "2026-01-09T18:38:44.529Z" },
-]
-
-[[package]]
-name = "esphome-devices"
+name = "esphome-config"
 version = "0"
 source = { virtual = "." }
 dependencies = [
@@ -484,6 +475,15 @@ requires-dist = [{ name = "esphome", specifier = "~=2026.1.0" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pre-commit", specifier = ">=4.5.1" }]
+
+[[package]]
+name = "esphome-dashboard"
+version = "20260110.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/9d/6d/2db7a90a793a831908feea9ffd9c2b4afddff2761b5ecf64289dccc1820c/esphome_dashboard-20260110.0.tar.gz", hash = "sha256:1e2291d5eb09af44145f346a1b7cb2f7eba80025eedaa2ce1075b841d5e92d13", size = 5744984, upload-time = "2026-01-09T18:38:46.18Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b6/62/36646f6ed1272fa41a59e828d57858304503b4388222c91937a8fe215c1b/esphome_dashboard-20260110.0-py3-none-any.whl", hash = "sha256:fb452625a5484e271d3ebb7efcd02d8c6f16855957f6013320205f06edbf15b7", size = 5844742, upload-time = "2026-01-09T18:38:44.529Z" },
+]
 
 [[package]]
 name = "esphome-glyphsets"
