@@ -11,7 +11,7 @@ esphome:
 
 packages:
   - !include
-    file: esp32-a1s-es8388.yaml
+    file: ../esp32-a1s/esp32-a1s-es8388.yaml
     vars:
       speaker_id: ${speaker_id}
       mic_id: ${mic_id}

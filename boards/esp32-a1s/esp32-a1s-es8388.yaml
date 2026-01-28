@@ -9,7 +9,7 @@ defaults:
   mic_id: mic_id
 
 packages:
-  - !include esp32-wrover.yaml
+  - !include ../esp32/esp32-wrover.yaml
 
 psram:
   ignore_not_found: false # enable aggressive optimisations
