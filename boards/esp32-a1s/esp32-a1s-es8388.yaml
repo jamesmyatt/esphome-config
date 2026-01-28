@@ -27,7 +27,7 @@ audio_dac:
   - id: es8388_dac
     platform: es8388
     i2c_id: a1s_i2c_internal
-    address: 16
+    address: 0x10
 
 select:
   - platform: es8388
