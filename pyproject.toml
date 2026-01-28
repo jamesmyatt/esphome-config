@@ -1,8 +1,11 @@
 [project]
-name = "esphome-devices"
+name = "esphome-config"
 version = "0"
 description = "ESPHome configuration packages and devices."
 readme = "README.md"
+authors = [
+  {name = "James Myatt", email = "james@jamesmyatt.co.uk"},
+]
 requires-python = ">=3.13"
 dependencies = [
     "esphome~=2026.1.0",
