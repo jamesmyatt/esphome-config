@@ -20,6 +20,8 @@ i2c:
     scl: GPIO32
     frequency: 100kHz
     scan: false
+    scl_pullup_enabled: false # use built-in pullup
+    sda_pullup_enabled: false # use built-in pullup
 
 audio_dac:
   - id: es8388_dac
