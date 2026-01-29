@@ -1,5 +1,6 @@
 # Based on https://github.com/iMicknl/LoctekMotion_IoT/blob/main/packages/office-desk-esp32.yaml
 defaults:
+  source_loctekmotion: github://iMicknl/LoctekMotion_IoT@main
   tx_pin: GPIO21
   rx_pin: GPIO20
   screen_pin: GPIO10
@@ -7,10 +8,7 @@ defaults:
   max_height: "122.9" # Max height - 0.1
 
 external_components:
-  - source:
-      type: git
-      url: https://www.github.com/iMicknl/LoctekMotion_IoT
-      ref: main
+  - source: ${source_loctekmotion}
     components: [loctekmotion_desk_height]
 
 esphome:
@@ -31,7 +29,7 @@ uart:
     rx_pin: ${rx_pin}
 
 sensor:
-  - id: "desk_height"
+  - id: desk_height
     platform: loctekmotion_desk_height
     name: Desk Height
     on_value_range:
@@ -188,7 +186,7 @@ button:
           data: [0x9b, 0x06, 0x02, 0x40, 0x00, 0xAC, 0x90, 0x9d]
 
 cover:
-  - id: "desk_cover"
+  - id: desk_cover
     platform: template
     icon: mdi:desk # or mdi:human-male-height-variant
     name: "Desk"
