@@ -1,0 +1,68 @@
+defaults:
+  activity_led: activity_led
+  i2c_bus: bus_i2c
+  flash_length: 500ms
+
+esphome:
+  comment: NFC Tag Reader
+
+event:
+  - platform: template
+    id: tag_scanned
+    name: Tag scanned
+    icon: mdi:button-pointer
+    event_types:
+      - generic
+      - homeassistant
+
+pn532_i2c:
+  - id: pn532_board
+    i2c_id: ${i2c_bus}
+    update_interval: 1s
+    on_tag:
+      - then:
+          - text_sensor.template.publish:
+              id: tag_uid
+              state: !lambda "return x;"
+          - text_sensor.template.publish:
+              id: tag_id
+              state: !lambda "return get_ha_tag_ndef(tag);"
+          - if:
+              condition:
+                - not:
+                    text_sensor.state:
+                      id: tag_id
+                      state: ""
+              then:
+                - event.trigger:
+                    id: tag_scanned
+                    event_type: homeassistant
+                - light.turn_on:
+                    id: "${activity_led}"
+                    brightness: 100%
+                    red: 0%
+                    green: 0%
+                    blue: 100%
+                    flash_length: ${flash_length}
+                - homeassistant.tag_scanned: !lambda "return id(tag_id).state;"
+              else:
+                - event.trigger:
+                    id: tag_scanned
+                    event_type: generic
+                - light.turn_on:
+                    id: "${activity_led}"
+                    brightness: 100%
+                    red: 0%
+                    green: 100%
+                    blue: 0%
+                    flash_length: ${flash_length}
+
+text_sensor:
+  - platform: template
+    name: "RFID Tag UID"
+    id: tag_uid
+    entity_category: diagnostic
+  - platform: template
+    name: "Home Assistant Tag ID"
+    id: tag_id
+    entity_category: diagnostic
