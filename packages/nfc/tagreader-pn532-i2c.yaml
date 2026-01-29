@@ -61,8 +61,10 @@ text_sensor:
   - platform: template
     name: "RFID Tag UID"
     id: tag_uid
+    icon: mdi:nfc
     entity_category: diagnostic
   - platform: template
     name: "Home Assistant Tag ID"
     id: tag_id
+    icon: mdi:nfc-variant
     entity_category: diagnostic
