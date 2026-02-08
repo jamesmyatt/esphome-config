@@ -3,12 +3,6 @@ esp32:
   framework:
     type: esp-idf
 
-esphome:
-  platformio_options:
-    board_build.f_flash: 40000000L
-    board_build.flash_mode: dio
-    board_build.flash_size: 4MB
-
 # Outputs
 output:
   - id: out_builtin
