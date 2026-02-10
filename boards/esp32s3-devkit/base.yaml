@@ -26,9 +26,9 @@ logger:
 
 # UART connected to RX/TX pins and USB bridge
 uart:
-  - id: uart0
-    tx: GPIO43
-    rx: GPIO44
+  - id: bus_uart0
+    tx_pin: GPIO43
+    rx_pin: GPIO44
     baud_rate: 115200
 
 # Lights

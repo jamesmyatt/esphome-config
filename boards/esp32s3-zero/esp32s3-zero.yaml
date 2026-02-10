@@ -16,7 +16,7 @@ packages:
       psram_mode: quad
       rgb_pin: GPIO21
 
-# Note that uart0 doesn't have onboard USB bridge
+# Note that bus_uart0 doesn't have onboard USB bridge
 
 logger:
   # Use native USB

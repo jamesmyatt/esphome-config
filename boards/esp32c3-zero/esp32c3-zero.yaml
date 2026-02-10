@@ -8,7 +8,7 @@ esp32:
 
 # UART connected to RX/TX pins
 uart:
-  - id: uart0
+  - id: bus_uart0
     tx_pin: GPIO21
     rx_pin: GPIO20
     baud_rate: 115200
