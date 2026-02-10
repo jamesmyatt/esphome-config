@@ -1,12 +1,14 @@
 # https://www.waveshare.com/wiki/ESP32-C3-Zero
+# Chip is (usually) ESP32-C3FN4
+
 esp32:
   variant: esp32c3
   framework:
     type: esp-idf
 
-# UART pins from silkscreen
+# UART connected to RX/TX pins
 uart:
-  - id: default_uart0
+  - id: uart0
     tx_pin: GPIO21
     rx_pin: GPIO20
     baud_rate: 115200

@@ -1,3 +1,5 @@
+# Chip is (usually) ESP32-C3FN4
+
 esp32:
   variant: esp32c3
   framework:
