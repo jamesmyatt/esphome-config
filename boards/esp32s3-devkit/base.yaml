@@ -1,6 +1,9 @@
 # ESP32-S3-DevKitC-1 (or equivalent)
 # https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html
 
+# V1_0 has rgb_pin: GPIO48
+# V1_1 has rgb_pin: GPIO38
+
 defaults:
   psram_mode: quad
   rgb_pin: GPIO48

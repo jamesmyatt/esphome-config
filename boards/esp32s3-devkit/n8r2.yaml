@@ -1,12 +1,16 @@
 # Chip is ESP32-S3-WROOM-1(U)-N8R2
 # 8MB Flash (Quad SPI), 2MB PSRAM (Quad SPI)
 
+defaults:
+  rgb_pin: GPIO48
+
 packages:
   - !include
     file: base.yaml
     vars:
       flash_size: 8MB
       psram_mode: quad
+      rgb_pin: ${rgb_pin}
 
 esp32:
   cpu_frequency: 240MHz

@@ -3,7 +3,10 @@
 # 4MB Flash (Quad SPI), 2MB PSRAM (Quad SPI)
 
 # This is effectively the same as the devkit,
-# But using a SoC rather than SoM, and without the USB-UART bridge
+# But:
+#   - uses a SoC rather than SoM
+#   - uses GPIO21 for RGB led
+#   - without the USB-UART bridge
 
 packages:
   - !include
