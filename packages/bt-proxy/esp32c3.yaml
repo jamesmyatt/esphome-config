@@ -1,26 +1,19 @@
 # Based on https://github.com/esphome/bluetooth-proxies/blob/main/esp32-generic/esp32-generic-c3.yaml
-defaults: {}
+defaults:
+  connection_slots: 3
+
+packages:
+  - !include
+    file: base.yaml
+    vars:
+      connection_slots: ${connection_slots}
 
 esphome:
   comment: Bluetooth Proxy (esp32-c3)
-  min_version: 2025.8.0
 
 esp32:
   variant: esp32c3
   framework:
-    type: esp-idf
     sdkconfig_options:
       CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y
       CONFIG_BT_BLE_50_FEATURES_SUPPORTED: n
-
-api:
-
-esp32_ble_tracker:
-  scan_parameters:
-    # We currently use the defaults to ensure Bluetooth
-    # can co-exist with WiFi In the future we may be able to
-    # enable the built-in coexistence logic in ESP-IDF
-    active: true
-
-bluetooth_proxy:
-  active: true

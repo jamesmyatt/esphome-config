@@ -1,0 +1,33 @@
+# Based on https://github.com/esphome/bluetooth-proxies/
+#
+# We currently use the defaults to ensure Bluetooth
+# can co-exist with WiFi In the future we may be able to
+# enable the built-in coexistence logic in ESP-IDF
+#
+# With Ethernet-based boards, connection_slots can be increased
+# to 4.
+# See https://esphome.io/components/bluetooth_proxy/#how-active-connections-work
+
+defaults:
+  connection_slots: 3
+
+esphome:
+  comment: Bluetooth Proxy
+  min_version: 2025.8.0
+
+esp32:
+  framework:
+    type: esp-idf
+
+api:
+
+esp32_ble:
+  max_connections: ${connection_slots}
+
+esp32_ble_tracker:
+  scan_parameters:
+    active: true
+
+bluetooth_proxy:
+  active: true
+  connection_slots: ${connection_slots}

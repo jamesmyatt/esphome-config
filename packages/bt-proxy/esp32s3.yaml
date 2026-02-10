@@ -1,0 +1,15 @@
+# Based on https://github.com/esphome/bluetooth-proxies/blob/main/esp32-generic/esp32-generic-s3.yaml
+defaults:
+  connection_slots: 3
+
+packages:
+  - !include
+    file: base.yaml
+    vars:
+      connection_slots: ${connection_slots}
+
+esphome:
+  comment: Bluetooth Proxy (esp32-s3)
+
+esp32:
+  variant: esp32s3
