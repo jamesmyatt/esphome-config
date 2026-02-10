@@ -1,0 +1,23 @@
+# https://www.waveshare.com/wiki/ESP32-S3-Zero
+# Chip is ESP32-S3FH4R2
+# 4MB Flash (Quad SPI), 2MB PSRAM (Quad SPI)
+
+# This is effectively the same as the devkit,
+# But:
+#   - uses a SoC rather than SoM
+#   - uses GPIO21 for RGB led
+#   - without the USB-UART bridge
+
+packages:
+  - !include
+    file: ../esp32s3-devkit/base.yaml
+    vars:
+      flash_size: 4MB
+      psram_mode: quad
+      rgb_pin: GPIO21
+
+# Note that bus_uart0 doesn't have onboard USB bridge
+
+logger:
+  # Use native USB
+  hardware_uart: USB_SERIAL_JTAG
