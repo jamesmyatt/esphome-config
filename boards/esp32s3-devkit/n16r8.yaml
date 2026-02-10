@@ -1,0 +1,12 @@
+# Chip is ESP32-S3-WROOM-1(U)-N16R8
+# 16MB Flash (Quad SPI), 8MB PSRAM (Octal SPI)
+
+packages:
+  - !include
+    file: base.yaml
+    vars:
+      flash_size: 16MB
+      psram_mode: octal
+
+esp32:
+  cpu_frequency: 240MHz

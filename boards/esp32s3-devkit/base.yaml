@@ -1,0 +1,55 @@
+# ESP32-S3-DevKitC-1 (or equivalent)
+# https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html
+
+defaults:
+  psram_mode: quad
+  rgb_pin: GPIO48
+  flash_size: 4MB
+
+esp32:
+  variant: esp32s3
+  flash_size: ${flash_size}
+  framework:
+    type: esp-idf
+
+psram:
+  mode: ${psram_mode}
+  speed: 80MHz
+  ignore_not_found: false # enable aggressive optimisations
+
+logger:
+  # Use USB bridge
+  hardware_uart: UART0
+
+# UART connected to RX/TX pins and USB bridge
+uart:
+  - id: uart0
+    tx: GPIO43
+    rx: GPIO44
+    baud_rate: 115200
+
+# Lights
+light:
+  - id: led_builtin
+    platform: esp32_rmt_led_strip
+    name: "Status"
+    rgb_order: GRB
+    pin: ${rgb_pin}
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    entity_category: config
+
+# Buttons
+binary_sensor:
+  - id: btn_boot
+    platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+      ignore_strapping_warning: true
+    name: "Boot"
+    filters:
+      - delayed_off: 10ms # debounce
+    entity_category: diagnostic
