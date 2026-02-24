@@ -19,6 +19,8 @@ globals:
     type: nfc::NfcTag
   - id: nfc_uid
     type: std::string
+  - id: ha_tag_id
+    type: std::string
 
 text_sensor:
   - platform: template
@@ -36,29 +38,18 @@ script:
   - id: tag_reader
     mode: single
     then:
-      - lambda: |-
-          ESP_LOGD("tagreader", "Got '%s' (%s)",
-            id(nfc_uid).c_str(),
-            id(nfc_tag).get_tag_type().c_str()
-          );
-          if (id(nfc_tag).has_ndef_message()) {
-            ESP_LOGD("tagreader", "Found NDEF: %d messages",
-              id(nfc_tag).get_ndef_message()->get_records().size());
-          } else {
-            ESP_LOGD("tagreader", "Found no NDEF");
-          }
+      - alias: Parse tag data
+        lambda: |-
+          id(ha_tag_id) = get_ha_tag_ndef(id(nfc_tag));
       - text_sensor.template.publish:
           id: tag_uid
           state: !lambda "return id(nfc_uid);"
       - text_sensor.template.publish:
           id: tag_id
-          state: !lambda "return get_ha_tag_ndef(id(nfc_tag));"
+          state: !lambda "return id(ha_tag_id);"
       - if:
           condition:
-            - not:
-                text_sensor.state:
-                  id: tag_id
-                  state: ""
+            - lambda: 'return id(ha_tag_id) != "";'
           then:
             - event.trigger:
                 id: tag_scanned
@@ -70,7 +61,7 @@ script:
                 green: 0%
                 blue: 100%
                 flash_length: "${flash_length}"
-            - homeassistant.tag_scanned: !lambda "return id(tag_id).state;"
+            - homeassistant.tag_scanned: !lambda "return id(ha_tag_id);"
           else:
             - event.trigger:
                 id: tag_scanned
@@ -82,3 +73,15 @@ script:
                 green: 100%
                 blue: 0%
                 flash_length: "${flash_length}"
+      - alias: Show debugging info
+        lambda: |-
+          ESP_LOGD("tagreader", "Got '%s' (%s)",
+            id(nfc_uid).c_str(),
+            id(nfc_tag).get_tag_type().c_str()
+          );
+          if (id(nfc_tag).has_ndef_message()) {
+            ESP_LOGD("tagreader", "Found NDEF: %d messages",
+              id(nfc_tag).get_ndef_message()->get_records().size());
+          } else {
+            ESP_LOGD("tagreader", "Found no NDEF");
+          }
