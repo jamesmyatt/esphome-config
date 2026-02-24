@@ -1,7 +1,8 @@
 defaults:
   activity_led: activity_led
   flash_length: 500ms
-  i2c_bus: bus_i2c
+  spi_bus: bus_spi
+  cs_pin: null
 
 packages:
   - !include
@@ -10,9 +11,10 @@ packages:
       activity_led: ${activity_led}
       flash_length: ${flash_length}
 
-pn532_i2c:
+pn532_spi:
   - id: pn532_board
-    i2c_id: ${i2c_bus}
+    spi_id: ${spi_bus}
+    cs_pin: ${cs_pin}
     update_interval: 1s
     on_tag:
       - then:
