@@ -38,9 +38,10 @@ script:
   - id: tag_reader
     mode: single
     then:
-      - alias: Parse tag data
-        lambda: |-
+      # Parse tag data
+      - lambda: |-
           id(ha_tag_id) = get_ha_tag_ndef(id(nfc_tag));
+      # Send tag data
       - text_sensor.template.publish:
           id: tag_uid
           state: !lambda "return id(nfc_uid);"
@@ -55,7 +56,7 @@ script:
                 id: tag_scanned
                 event_type: homeassistant
             - homeassistant.tag_scanned: !lambda "return id(ha_tag_id);"
-            - alias: Flash blue for Home Assistant tag
+            - # Flash blue for Home Assistant tag
               light.turn_on:
                 id: "${activity_led}"
                 brightness: 100%
@@ -67,7 +68,7 @@ script:
             - event.trigger:
                 id: tag_scanned
                 event_type: generic
-            - alias: Flash orange for generic tag
+            - # Flash orange for generic tag
               light.turn_on:
                 id: "${activity_led}"
                 brightness: 100%
@@ -75,7 +76,7 @@ script:
                 green: 65%
                 blue: 0%
                 flash_length: "${flash_length}"
-      - alias: Show debugging info
+      - # Show debugging info
         lambda: |-
           ESP_LOGD("tagreader", "Got '%s' (%s)",
             id(nfc_uid).c_str(),
