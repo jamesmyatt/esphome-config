@@ -1,0 +1,90 @@
+defaults:
+  activity_led: activity_led
+  flash_length: 500ms
+
+event:
+  - platform: template
+    id: tag_scanned
+    name: Tag scanned
+    icon: mdi:button-pointer
+    event_types:
+      - generic
+      - homeassistant
+
+esphome:
+  comment: NFC Tag Reader
+
+globals:
+  - id: nfc_tag
+    type: nfc::NfcTag
+  - id: nfc_uid
+    type: std::string
+  - id: ha_tag_id
+    type: std::string
+
+text_sensor:
+  - platform: template
+    name: "RFID Tag UID"
+    id: tag_uid
+    icon: mdi:nfc
+    entity_category: diagnostic
+  - platform: template
+    name: "Home Assistant Tag ID"
+    id: tag_id
+    icon: mdi:nfc-variant
+    entity_category: diagnostic
+
+script:
+  - id: tag_reader
+    mode: single
+    then:
+      # Parse tag data
+      - lambda: |-
+          id(ha_tag_id) = get_ha_tag_ndef(id(nfc_tag));
+      # Send tag data
+      - text_sensor.template.publish:
+          id: tag_uid
+          state: !lambda "return id(nfc_uid);"
+      - text_sensor.template.publish:
+          id: tag_id
+          state: !lambda "return id(ha_tag_id);"
+      - if:
+          condition:
+            - lambda: 'return id(ha_tag_id) != "";'
+          then:
+            - event.trigger:
+                id: tag_scanned
+                event_type: homeassistant
+            - homeassistant.tag_scanned: !lambda "return id(ha_tag_id);"
+            - # Flash home assistant blue for Home Assistant tag
+              light.turn_on:
+                id: "${activity_led}"
+                brightness: 100%
+                red: 9%
+                green: 74%
+                blue: 100%
+                flash_length: "${flash_length}"
+          else:
+            - event.trigger:
+                id: tag_scanned
+                event_type: generic
+            - # Flash bright orange for generic tag
+              light.turn_on:
+                id: "${activity_led}"
+                brightness: 100%
+                red: 100%
+                green: 60%
+                blue: 11%
+                flash_length: "${flash_length}"
+      - # Show debugging info
+        lambda: |-
+          ESP_LOGD("tagreader", "Got '%s' (%s)",
+            id(nfc_uid).c_str(),
+            id(nfc_tag).get_tag_type().c_str()
+          );
+          if (id(nfc_tag).has_ndef_message()) {
+            ESP_LOGD("tagreader", "Found NDEF: %d messages",
+              id(nfc_tag).get_ndef_message()->get_records().size());
+          } else {
+            ESP_LOGD("tagreader", "Found no NDEF");
+          }
