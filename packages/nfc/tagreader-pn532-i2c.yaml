@@ -1,6 +1,7 @@
 defaults:
   activity_led: activity_led
   flash_length: 500ms
+  flash_brightness: 100%
   i2c_bus: bus_i2c
 
 packages:
@@ -9,6 +10,7 @@ packages:
     vars:
       activity_led: ${activity_led}
       flash_length: ${flash_length}
+      flash_brightness: ${flash_brightness}
 
 pn532_i2c:
   - id: pn532_board
