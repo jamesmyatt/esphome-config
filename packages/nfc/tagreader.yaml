@@ -1,6 +1,7 @@
 defaults:
   activity_led: activity_led
   flash_length: 500ms
+  flash_brightness: 100%
 
 event:
   - platform: template
@@ -59,7 +60,7 @@ script:
             - # Flash home assistant blue for Home Assistant tag
               light.turn_on:
                 id: "${activity_led}"
-                brightness: 100%
+                brightness: "${flash_brightness}"
                 red: 9%
                 green: 74%
                 blue: 100%
@@ -71,20 +72,8 @@ script:
             - # Flash bright orange for generic tag
               light.turn_on:
                 id: "${activity_led}"
-                brightness: 100%
+                brightness: "${flash_brightness}"
                 red: 100%
                 green: 60%
                 blue: 11%
                 flash_length: "${flash_length}"
-      - # Show debugging info
-        lambda: |-
-          ESP_LOGD("tagreader", "Got '%s' (%s)",
-            id(nfc_uid).c_str(),
-            id(nfc_tag).get_tag_type().c_str()
-          );
-          if (id(nfc_tag).has_ndef_message()) {
-            ESP_LOGD("tagreader", "Found NDEF: %d messages",
-              id(nfc_tag).get_ndef_message()->get_records().size());
-          } else {
-            ESP_LOGD("tagreader", "Found no NDEF");
-          }
