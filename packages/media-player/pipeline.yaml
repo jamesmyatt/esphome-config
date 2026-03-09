@@ -3,7 +3,7 @@
 #  - https://github.com/esphome/home-assistant-voice-pe/blob/25.11.0/home-assistant-voice.yaml
 
 defaults:
-  speaker_id: speaker_id
+  speaker_id: external_speaker
   num_channels: 2
   task_stack_in_psram: false
 

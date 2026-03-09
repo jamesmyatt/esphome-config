@@ -3,8 +3,8 @@
 #  - https://github.com/esphome/media-players/blob/main/m5stack/m5stack-atom-echo.yaml
 
 defaults:
-  speaker_id: speaker_id
-  media_player_id: media_player_id
+  speaker_id: external_speaker
+  media_player_id: external_media_player
 
 media_player:
   - id: ${media_player_id}

@@ -3,8 +3,8 @@
 #  - https://github.com/esphome/home-assistant-voice-pe/blob/25.11.0/home-assistant-voice.yaml
 
 defaults:
-  speaker_id: speaker_id
-  media_player_id: media_player_id
+  speaker_id: external_speaker
+  media_player_id: external_media_player
   num_channels: 2
   task_stack_in_psram: false
 
@@ -20,7 +20,6 @@ media_player:
   - id: ${media_player_id}
     platform: speaker
     name: "Media Player"
-    internal: false
     task_stack_in_psram: ${task_stack_in_psram}
     announcement_pipeline:
       speaker: announcement_resampling_speaker
