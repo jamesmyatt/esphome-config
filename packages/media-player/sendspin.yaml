@@ -21,6 +21,7 @@ packages:
       num_channels: ${num_channels}
       task_stack_in_psram: ${task_stack_in_psram}
 
+external_components:
   ## Speciifc commits that are known to produce a working build
   ## https://github.com/esphome/esphome/pull/12284#issuecomment-3929269125
   - source:
