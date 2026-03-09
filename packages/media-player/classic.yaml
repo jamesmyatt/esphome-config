@@ -19,7 +19,8 @@ packages:
 media_player:
   - id: ${media_player_id}
     platform: speaker
-    name: "Media Player"
+    name: Media Player
+    internal: false
     task_stack_in_psram: ${task_stack_in_psram}
     announcement_pipeline:
       speaker: announcement_resampling_speaker
