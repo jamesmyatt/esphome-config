@@ -5,8 +5,8 @@
 #     dac_config: model=ES8388,bck=27,ws=25,do=26,sda=33,scl=32,i2c=16
 
 defaults:
-  speaker_id: speaker_id
-  mic_id: mic_id
+  speaker_id: external_speaker
+  mic_id: external_microphone
 
 packages:
   - !include ../esp32/esp32-wrover.yaml
