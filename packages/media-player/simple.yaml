@@ -1,0 +1,17 @@
+# Examples
+#  - https://esphome.io/components/media_player/speaker/
+#  - https://github.com/esphome/media-players/blob/main/m5stack/m5stack-atom-echo.yaml
+
+defaults:
+  speaker_id: speaker_id
+  media_player_id: media_player_id
+
+media_player:
+  - id: ${media_player_id}
+    platform: speaker
+    name: Media Player
+    announcement_pipeline:
+      speaker: ${speaker_id}
+      format: WAV # WAV is the least memory intensive codec
+      num_channels: 1 # Stereo audio is unnecessary for announcements
+      sample_rate: 16000 # low sample rate
