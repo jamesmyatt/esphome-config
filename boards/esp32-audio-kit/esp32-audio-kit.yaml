@@ -3,8 +3,8 @@
 #  - https://github.com/sle118/squeezelite-esp32#esp32-a1s
 
 defaults:
-  speaker_id: speaker_id
-  mic_id: mic_id
+  speaker_id: external_speaker
+  mic_id: external_microphone
 
 esphome:
   comment: ESP32 Audio Kit (v2.2)
