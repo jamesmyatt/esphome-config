@@ -1,0 +1,34 @@
+# Examples
+#  - https://esphome.io/components/media_player/speaker/
+#  - https://github.com/esphome/home-assistant-voice-pe/blob/25.11.0/home-assistant-voice.yaml
+
+defaults:
+  speaker_id: speaker_id
+  media_player_id: media_player_id
+  num_channels: 2
+  task_stack_in_psram: false
+
+packages:
+  - !include
+    file: pipeline.yaml
+    vars:
+      speaker_id: ${speaker_id}
+      num_channels: ${num_channels}
+      task_stack_in_psram: ${task_stack_in_psram}
+
+media_player:
+  - id: ${media_player_id}
+    platform: speaker
+    name: "Media Player"
+    internal: false
+    task_stack_in_psram: ${task_stack_in_psram}
+    announcement_pipeline:
+      speaker: announcement_resampling_speaker
+      format: FLAC # FLAC is the least processor intensive codec
+      num_channels: 1 # Stereo audio is unnecessary for announcements
+      sample_rate: 48000
+    media_pipeline:
+      speaker: media_resampling_speaker
+      format: FLAC # FLAC is the least processor intensive codec
+      num_channels: ${num_channels}
+      sample_rate: 48000
