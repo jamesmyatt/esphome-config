@@ -93,3 +93,10 @@ media_player:
       - file_source
       - http_source
       - sendspin_source
+
+    announcement_speaker: announcement_resampling_speaker
+    media_speaker: media_resampling_speaker
+    announcement_pipeline:
+      speaker: !remove
+    media_pipeline:
+      speaker: !remove
