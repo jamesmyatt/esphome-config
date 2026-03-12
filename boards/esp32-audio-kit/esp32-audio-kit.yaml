@@ -8,6 +8,11 @@ defaults:
 
 esphome:
   comment: ESP32 Audio Kit (v2.2)
+  on_boot:
+    - priority: -100
+      then:
+        - script.execute:
+            id: update_output
 
 packages:
   - !include
@@ -15,6 +20,34 @@ packages:
     vars:
       speaker_id: ${speaker_id}
       mic_id: ${mic_id}
+
+script:
+  - id: update_output
+    # TODO: Should this switch mute_switch also?
+    then:
+      - if:
+          condition:
+            - not:
+                - select.is:
+                    id: es8388_dac_output
+                    options: ["BOTH"]
+          then:
+            - if:
+                condition:
+                  - binary_sensor.is_on:
+                      id: sensor_jack
+                then:
+                  - select.set:
+                      id: es8388_dac_output
+                      option: "LINE2" # Line out
+                else:
+                  - select.set:
+                      id: es8388_dac_output
+                      option: "LINE1" # Speaker
+          else:
+            - logger.log:
+                format: "Leave DAC Output as '%s'"
+                args: ["id(es8388_dac_output).current_option().c_str()"]
 
 switch:
   - id: mute_switch
@@ -37,7 +70,10 @@ binary_sensor:
       - delayed_on: 200ms
       - delayed_off: 200ms
     entity_category: diagnostic
-    # TODO: Switch esp8266_dac_output and mute_switch based on sensor_jack?
+    on_state:
+      - then:
+          - script.execute:
+              id: update_output
 
   # Note that GPIO0 is used by the I2S bus
 
