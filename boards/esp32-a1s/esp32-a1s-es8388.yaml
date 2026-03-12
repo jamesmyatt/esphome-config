@@ -14,6 +14,20 @@ packages:
 psram:
   ignore_not_found: false # enable aggressive optimisations
 
+esphome:
+  on_boot:
+    - priority: -200
+      then:
+        - if:
+            condition:
+              - select.is:
+                  id: es8388_dac_output
+                  options: [""]
+            then:
+              - select.set:
+                  id: es8388_dac_output
+                  option: BOTH
+
 i2c:
   - id: a1s_i2c_internal
     sda: GPIO33
