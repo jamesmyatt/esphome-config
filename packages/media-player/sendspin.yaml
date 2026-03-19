@@ -44,7 +44,7 @@ sendspin: # from PR
 http_request: # from PR
   buffer_size_rx: 2048 # Reduces CPU load when streaming audio
 
-audio_file:
+audio_file: # from 2026.03
 
 media_source:
   - id: file_announcement_source
