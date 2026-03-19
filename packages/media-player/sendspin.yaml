@@ -1,5 +1,6 @@
 # Examples
 #  - https://esphome.io/components/media_player/speaker_source/
+#  - https://github.com/esphome/home-assistant-voice-pe/pull/562
 #  - https://github.com/esphome/home-assistant-voice-pe/blob/26.2.2/home-assistant-voice.yaml
 #  - https://github.com/sonocotta/esp32-audio-dock/blob/main/firmware/esphome/packages/sendspin.yaml
 
@@ -21,41 +22,50 @@ packages:
       num_channels: ${num_channels}
       task_stack_in_psram: ${task_stack_in_psram}
 
+# Sendspin related components are pinned to specific commits for reproducible builds
 external_components:
-  ## https://github.com/esphome/esphome/pull/14933
-  - source: github://pr#14933
-    components: [generic_image, sendspin]
-    refresh: 1h
+  - source:
+      # https://github.com/esphome/esphome/pull/14933
+      type: git
+      url: https://github.com/kahrendt/esphome
+      ref: 890e33f99af2c2ea15dc74c3ec4cf32d25203526
+    components: [const, media_source, sendspin]
+  - source:
+      # https://github.com/esphome/esphome/pull/12429
+      type: git
+      url: https://github.com/esphome/esphome
+      ref: ff8ce89556748509d7ee8724e12d9d43d3c8c1e8
+    components: [http_request]
 
 sendspin: # from PR
   id: sendspin_hub
-  task_stack_in_psram: ${task_stack_in_psram}
-  kalman_process_error: 0.01
+  task_stack_in_psram: false # ${task_stack_in_psram}
 
 http_request: # from PR
+  buffer_size_rx: 2048 # Reduces CPU load when streaming audio
 
 media_source:
-  - id: sendspin_source
-    platform: sendspin # from PR
-  - id: http_source
+  - id: file_announcement_source
+    platform: audio_file # from 2026.03
+  - id: http_announcement_source
     platform: http_request # from PR
-    buffer_size: 200000
-  - platform: audio_file # from 2026.03
-    id: announcement_file_source
-  - platform: audio_file # from 2026.03
-    id: media_file_source
+    buffer_size: 250000
+  - id: http_media_source
+    platform: http_request # from PR
+    buffer_size: 500000
+  - id: sendspin_media_source
+    platform: sendspin # from PR
 
 media_player:
   - id: sendspin_group_media_player
     platform: sendspin # from PR
-
   - id: !extend ${media_player_id}
     platform: speaker_source # from 2026.03
     announcement_pipeline:
       sources:
-        - announcement_file_source
+        - file_announcement_source
+        - http_announcement_source
     media_pipeline:
       sources:
-        - http_source
-        - sendspin_source
-        - media_file_source
+        - http_media_source
+        - sendspin_media_source
