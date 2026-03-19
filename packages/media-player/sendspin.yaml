@@ -22,7 +22,8 @@ packages:
       num_channels: ${num_channels}
       task_stack_in_psram: ${task_stack_in_psram}
 
-# Sendspin related components are pinned to specific commits for reproducible builds
+# Media player related components are pinned to specific commits for reproducible builds
+# e.g. https://github.com/esphome/esphome/pull/12429#issuecomment-4089620746
 external_components:
   - source:
       # https://github.com/esphome/esphome/pull/14933
