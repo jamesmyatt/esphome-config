@@ -1,5 +1,5 @@
 # Examples
-#  - https://esphome.io/components/media_player/speaker/
+#  - https://esphome.io/components/media_player/speaker_source/
 #  - https://github.com/esphome/home-assistant-voice-pe/blob/26.2.2/home-assistant-voice.yaml
 #  - https://github.com/sonocotta/esp32-audio-dock/blob/main/firmware/esphome/packages/sendspin.yaml
 
@@ -10,7 +10,7 @@ defaults:
   task_stack_in_psram: false
 
 esphome:
-  min_version: 2026.2.0
+  min_version: 2026.3.0
 
 packages:
   - !include
@@ -22,81 +22,40 @@ packages:
       task_stack_in_psram: ${task_stack_in_psram}
 
 external_components:
-  ## Speciifc commits that are known to produce a working build
-  ## https://github.com/esphome/esphome/pull/12284#issuecomment-3929269125
-  - source:
-      # https://github.com/esphome/esphome/pull/12429
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: a6c403deb7603d316dce2820897902e01c3695cc
-    refresh: 0s
-    components: [file, http_request, media_source, speaker_source]
-  - source:
-      # https://github.com/esphome/esphome/pull/12284
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: 119a5c25a483c58b3d58a35c8cec95495c6491c2
-    components: [sendspin]
+  ## https://github.com/esphome/esphome/pull/14933
+  - source: github://pr#14933
+    components: [generic_image, sendspin]
+    refresh: 1h
 
-  # The following sources are merged into the dev branch of ESPHome, but not yet in a release.
-  # We've pinned them to their specific squash merge commit id for reproducable builds.
-  # These should be available in ESPHome 2026.3.0
-  - source:
-      # Dev commit hash for squash merge from PR#10212
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: 903971de12c1b291ca8cd367ce5cdf9af8b304ae
-    components: [runtime_image]
-  - source:
-      # Dev commit hash for squash merge from PR#12258
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: 264c8faedd0ab956b0437ec2ecc0bacae1708923
-    components: [media_player]
-  - source:
-      # Dev commit hash for squash merge from PR#14013
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: ba7134ee3f870ce00d2990d84b142b734028330f
-    components: [mdns]
-  - source:
-      # Dev commit hash for squash merge from PR#14108
-      type: git
-      url: https://github.com/esphome/esphome
-      ref: d2026b4cd74bbeb9b86941bf1887f3d93d639387
-    components: [audio]
-
-sendspin:
+sendspin: # from PR
   id: sendspin_hub
   task_stack_in_psram: ${task_stack_in_psram}
   kalman_process_error: 0.01
 
-http_request:
+http_request: # from PR
 
 media_source:
   - id: sendspin_source
-    platform: sendspin
+    platform: sendspin # from PR
   - id: http_source
-    platform: http_request
+    platform: http_request # from PR
     buffer_size: 200000
-  - id: file_source
-    platform: file
-    files: []
+  - platform: audio_file # from 2026.03
+    id: announcement_file_source
+  - platform: audio_file # from 2026.03
+    id: media_file_source
 
 media_player:
   - id: sendspin_group_media_player
-    platform: sendspin
+    platform: sendspin # from PR
 
   - id: !extend ${media_player_id}
-    platform: speaker_source
-    sources:
-      - file_source
-      - http_source
-      - sendspin_source
-
-    announcement_speaker: announcement_resampling_speaker
-    media_speaker: media_resampling_speaker
+    platform: speaker_source # from 2026.03
     announcement_pipeline:
-      speaker: !remove
+      sources:
+        - announcement_file_source
     media_pipeline:
-      speaker: !remove
+      sources:
+        - http_source
+        - sendspin_source
+        - media_file_source
