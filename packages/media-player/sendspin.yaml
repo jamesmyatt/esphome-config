@@ -61,6 +61,7 @@ media_player:
     platform: sendspin # from PR
   - id: !extend ${media_player_id}
     platform: speaker_source # from 2026.03
+    task_stack_in_psram: !remove
     announcement_pipeline:
       sources:
         - file_announcement_source
