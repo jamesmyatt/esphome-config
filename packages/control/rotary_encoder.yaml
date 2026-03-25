@@ -40,7 +40,7 @@ sensor:
           event_type: left
 
 button:
-  - id: btn_reset_encoder
+  - id: ${encoder_id}_reset
     platform: template
     name: Reset Encoder
     entity_category: config
