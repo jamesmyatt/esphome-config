@@ -39,6 +39,17 @@ sensor:
           id: encoder_event
           event_type: left
 
+button:
+  - id: btn_reset_encoder
+    platform: template
+    name: Reset Encoder
+    entity_category: config
+    on_press:
+      then:
+        - sensor.rotary_encoder.set_value:
+            id: ${encoder_id}
+            value: 0
+
 binary_sensor:
   - id: ${encoder_push_id}
     platform: gpio
