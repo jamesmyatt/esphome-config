@@ -1,0 +1,98 @@
+defaults:
+  encoder_id: enc_rotary
+  encoder_push_id: enc_push
+  encoder_pin_a: null
+  encoder_pin_b: null
+  encoder_pin_push: null
+
+esphome:
+  min_version: 2026.3.0
+
+event:
+  - id: encoder_event
+    platform: template
+    name: Encoder
+    icon: mdi:button-pointer
+    device_class: button
+    event_types:
+      - left
+      - right
+      - single_press
+      - double_press
+      - triple_press
+      - long_press
+
+sensor:
+  - id: ${encoder_id}
+    platform: rotary_encoder
+    name: "Rotary Encoder"
+    pin_a: ${encoder_pin_a}
+    pin_b: ${encoder_pin_b}
+    publish_initial_value: true
+    entity_category: diagnostic
+    on_clockwise:
+      - event.trigger:
+          id: encoder_event
+          event_type: right
+    on_anticlockwise:
+      - event.trigger:
+          id: encoder_event
+          event_type: left
+
+binary_sensor:
+  - id: ${encoder_push_id}
+    platform: gpio
+    pin:
+      number: ${encoder_pin_push}
+      inverted: true
+      mode: INPUT
+    name: Push
+    entity_category: diagnostic
+    filters:
+      - delayed_off: 10ms # debounce
+    on_multi_click:
+      # Simple Click:
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: encoder_single_press
+        timing:
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: encoder_event
+              event_type: single_press
+      # Double Click
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: encoder_double_press
+        timing:
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: encoder_event
+              event_type: double_press
+      # Triple Click
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: encoder_triple_press
+        timing:
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: encoder_event
+              event_type: triple_press
+      # Long Press
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: encoder_long_press
+        timing:
+          - ON for at least 1s
+        then:
+          - event.trigger:
+              id: encoder_event
+              event_type: long_press
