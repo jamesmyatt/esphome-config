@@ -1,8 +1,8 @@
 defaults:
-  pin_ch1: GPIO1
-  pin_ch2: GPIO0
-  pin_ch3: GPIO7
-  pin_ch4: GPIO3
+  pin_ch1: null # must be defined
+  pin_ch2: null # must be defined
+  pin_ch3: null # must be defined
+  pin_ch4: null # must be defined
   id_light: light
 
 output:
