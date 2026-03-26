@@ -1,0 +1,77 @@
+defaults:
+  push_id: main_button
+  event_id: button_press_event
+  push_pin: null
+
+esphome:
+  min_version: 2026.3.0
+
+event:
+  - id: ${event_id}
+    platform: template
+    name: Button press
+    icon: mdi:button-pointer
+    device_class: button
+    event_types:
+      - single_press
+      - double_press
+      - triple_press
+      - long_press
+
+binary_sensor:
+  - id: ${push_id}
+    platform: gpio
+    pin:
+      number: ${push_pin}
+      inverted: true
+      mode: INPUT
+    name: Button
+    entity_category: diagnostic
+    filters:
+      - delayed_off: 10ms # debounce
+    on_multi_click:
+      # Simple Click:
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: button_single_press
+        timing:
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: ${event_id}
+              event_type: single_press
+      # Double Click
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: button_double_press
+        timing:
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: ${event_id}
+              event_type: double_press
+      # Triple Click
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: button_triple_press
+        timing:
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at most 0.25s
+          - ON for at most 1s
+          - OFF for at least 0.25s
+        then:
+          - event.trigger:
+              id: ${event_id}
+              event_type: triple_press
+      # Long Press
+      #  . Exposed as an event entity. To be used in automations inside Home Assistant
+      - id: button_long_press
+        timing:
+          - ON for at least 1s
+        then:
+          - event.trigger:
+              id: ${event_id}
+              event_type: long_press
