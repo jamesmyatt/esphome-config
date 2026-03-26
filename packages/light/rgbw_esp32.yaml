@@ -1,8 +1,8 @@
 defaults:
-  pin_green: GPIO1
-  pin_red: GPIO0
-  pin_blue: GPIO7
-  pin_white: GPIO3
+  pin_green: null # must be defined
+  pin_red: null # must be defined
+  pin_blue: null # must be defined
+  pin_white: null # must be defined
   id_light: light_rgbw
 
 output:
