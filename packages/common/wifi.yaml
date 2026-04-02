@@ -10,16 +10,16 @@ wifi:
 sensor:
   - id: sensor_wifi_signal
     platform: wifi_signal
-    name: "Signal Strength"
+    name: Wi-Fi signal
     update_interval: 60s
 
 text_sensor:
   - platform: wifi_info
     ip_address:
       id: sensor_wifi_ip
-      name: "WiFi IP Address"
+      name: Wi-Fi IP address
       internal: true
     ssid:
       id: sensor_wifi_ssid
-      name: "WiFi SSID"
+      name: Wi-Fi SSID
       internal: true
