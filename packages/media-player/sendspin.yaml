@@ -8,7 +8,6 @@ defaults:
   speaker_id: external_speaker
   media_player_id: external_media_player
   num_channels: 2
-  task_stack_in_psram: false
 
 esphome:
   min_version: 2026.3.0
@@ -20,7 +19,6 @@ packages:
       speaker_id: ${speaker_id}
       media_player_id: ${media_player_id}
       num_channels: ${num_channels}
-      task_stack_in_psram: ${task_stack_in_psram}
 
 # Media player related components are pinned to specific commits for reproducible builds
 # e.g. https://github.com/esphome/esphome/pull/12429#issuecomment-4089620746
@@ -66,7 +64,6 @@ media_player:
     platform: sendspin # from PR
   - id: !extend ${media_player_id}
     platform: speaker_source # from 2026.03
-    task_stack_in_psram: !remove
     announcement_pipeline:
       sources:
         - file_announcement_source

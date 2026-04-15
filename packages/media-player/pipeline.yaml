@@ -5,7 +5,6 @@
 defaults:
   speaker_id: external_speaker
   num_channels: 2
-  task_stack_in_psram: false
 
 speaker:
   # Virtual speakers to combine the announcement and media streams together into one output
@@ -13,7 +12,6 @@ speaker:
     platform: mixer
     output_speaker: ${speaker_id}
     num_channels: ${num_channels}
-    task_stack_in_psram: ${task_stack_in_psram}
     source_speakers:
       - id: announcement_mixing_input
         timeout: never

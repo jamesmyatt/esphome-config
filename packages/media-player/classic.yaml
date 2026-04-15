@@ -6,7 +6,6 @@ defaults:
   speaker_id: external_speaker
   media_player_id: external_media_player
   num_channels: 2
-  task_stack_in_psram: false
 
 packages:
   - !include
@@ -14,14 +13,12 @@ packages:
     vars:
       speaker_id: ${speaker_id}
       num_channels: ${num_channels}
-      task_stack_in_psram: ${task_stack_in_psram}
 
 media_player:
   - id: ${media_player_id}
     platform: speaker
     name: Media Player
     internal: false
-    task_stack_in_psram: ${task_stack_in_psram}
     announcement_pipeline:
       speaker: announcement_resampling_speaker
       format: FLAC # FLAC is the least processor intensive codec
