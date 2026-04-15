@@ -5,6 +5,8 @@
 defaults:
   speaker_id: external_speaker
   media_player_id: external_media_player
+  media_format: OPUS # OPUS is the least network intensive codec
+  num_channels: 1 # not actually used
 
 media_player:
   - id: ${media_player_id}
@@ -12,6 +14,6 @@ media_player:
     name: Media Player
     announcement_pipeline:
       speaker: ${speaker_id}
-      format: WAV # WAV is the least memory intensive codec
+      format: ${media_format}
       num_channels: 1 # Stereo audio is unnecessary for announcements
       sample_rate: 16000 # low sample rate
