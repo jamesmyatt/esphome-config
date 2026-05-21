@@ -23,9 +23,6 @@ packages:
 sendspin: # from 2026.05
   id: sendspin_hub
 
-http_request: # from 2026.03
-  buffer_size_rx: 2048 # Reduces CPU load when streaming audio
-
 audio_file: # from 2026.03
 
 media_source:
