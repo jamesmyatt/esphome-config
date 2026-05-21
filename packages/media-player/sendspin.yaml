@@ -7,6 +7,7 @@
 defaults:
   speaker_id: external_speaker
   media_player_id: external_media_player
+  media_format: FLAC # FLAC is the least processor intensive codec
   num_channels: 2
 
 esphome:
@@ -18,6 +19,7 @@ packages:
     vars:
       speaker_id: ${speaker_id}
       media_player_id: ${media_player_id}
+      media_format: ${media_format}
       num_channels: ${num_channels}
 
 sendspin: # from 2026.05
