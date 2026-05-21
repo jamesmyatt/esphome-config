@@ -1,5 +1,16 @@
-.vscode/
+# VS Code
+.vscode/*
 !.vscode/extensions.json
 
-.esphome/
+# Secrets
 secrets.yaml
+.env
+.env.*
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
