@@ -43,7 +43,7 @@ media_source:
 media_player:
   - id: sendspin_group_media_player
     platform: sendspin # from 2026.05
-    name: Sendspin Player
+    name: Media Group
   - id: !extend ${media_player_id}
     platform: speaker_source # from 2026.03
     announcement_pipeline:
