@@ -1,0 +1,10 @@
+esphome:
+  min_version: 2026.5.0
+
+sendspin: # from 2026.05
+  id: sendspin_hub
+
+media_player:
+  - id: media_group_id
+    platform: sendspin # from 2026.05
+    name: Media Group
