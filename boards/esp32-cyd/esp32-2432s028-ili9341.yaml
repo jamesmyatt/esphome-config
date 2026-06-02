@@ -10,14 +10,6 @@ esp32:
   framework:
     type: esp-idf
 
-packages:
-  - !include
-    file: ../../packages/display/auto_dimming.yaml
-    vars:
-      light_sensor_id: light_level_raw
-      light_id: backlight
-      light_name: Backlight
-
 # SPI bus
 spi:
   - id: bus_lcd
