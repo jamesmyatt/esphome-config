@@ -144,7 +144,7 @@ output:
     pin:
       number: GPIO22
       inverted: true
-    frequency: 1000 Hz
+    frequency: 4882Hz # 14-bit
   # Bottom LED is shared with Key 3
 
 light:

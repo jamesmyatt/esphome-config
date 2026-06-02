@@ -4,27 +4,28 @@ defaults:
   pin_ch3: null # must be defined
   pin_ch4: null # must be defined
   id_light: light
+  ledc_freq: 4882Hz # 14-bit
 
 output:
   - id: ${id_light}_ch1_out
     platform: ledc
     pin: ${pin_ch1}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 0°
   - id: ${id_light}_ch2_out
     platform: ledc
     pin: ${pin_ch2}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 90°
   - id: ${id_light}_ch3_out
     platform: ledc
     pin: ${pin_ch3}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 180°
   - id: ${id_light}_ch4_out
     platform: ledc
     pin: ${pin_ch4}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 270°
 
 light:

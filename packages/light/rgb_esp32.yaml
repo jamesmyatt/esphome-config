@@ -3,22 +3,23 @@ defaults:
   pin_red: null # must be defined
   pin_blue: null # must be defined
   id_light: light_rgb
+  ledc_freq: 4882Hz # 14-bit
 
 output:
   - id: ${id_light}_g
     platform: ledc
     pin: ${pin_green}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 90°
   - id: ${id_light}_r
     platform: ledc
     pin: ${pin_red}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 180°
   - id: ${id_light}_b
     platform: ledc
     pin: ${pin_blue}
-    frequency: 1000 Hz
+    frequency: ${ledc_freq}
     phase_angle: 270°
 
 light:

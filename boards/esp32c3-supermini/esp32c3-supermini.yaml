@@ -13,7 +13,7 @@ output:
       number: GPIO8
       inverted: true
       ignore_strapping_warning: true
-    frequency: 1000 Hz
+    frequency: 4882Hz # 14-bit
 
 # Lights
 light:

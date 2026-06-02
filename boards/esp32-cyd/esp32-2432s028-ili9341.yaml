@@ -2,6 +2,9 @@
 # See:
 # - https://mischianti.org/esp32-2432s028-cheap-yellow-display-high-resolution-pinout-datasheet-schema-and-specs/
 
+defaults:
+  ledc_freq: 4882Hz # 14-bit
+
 esphome:
   comment: ESP32 Cheap Yellow Display
 
@@ -94,21 +97,25 @@ output:
   - id: lcd_backlight_pwm
     platform: ledc
     pin: 21
+    frequency: ${ledc_freq}
   - id: led_r
     platform: ledc
     pin: 4
     inverted: true
     phase_angle: 90
+    frequency: ${ledc_freq}
   - id: led_g
     platform: ledc
     pin: 16
     inverted: true
     phase_angle: 180
+    frequency: ${ledc_freq}
   - id: led_b
     platform: ledc
     pin: 17
     inverted: true
     phase_angle: 270
+    frequency: ${ledc_freq}
 
 light:
   - id: backlight
