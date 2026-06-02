@@ -12,10 +12,11 @@ esp32:
 
 packages:
   - !include
-    file: ../../display/auto_backlight.yaml
+    file: ../../packages/display/auto_dimming.yaml
     vars:
       light_sensor_id: light_level_raw
-      backlight_id: backlight
+      light_id: backlight
+      light_name: Backlight
 
 # SPI bus
 spi:
@@ -77,7 +78,6 @@ display:
     dc_pin:
       number: 2
       ignore_strapping_warning: true # built-in
-    rotation: 270°
     buffer_size: 50%
     update_interval: 1s
 
@@ -95,10 +95,6 @@ touchscreen:
       x_max: 4000
       y_min: 300
       y_max: 4000
-    transform:
-      mirror_x: true
-      mirror_y: true
-      swap_xy: true
 
 output:
   - id: lcd_backlight_pwm
@@ -133,5 +129,5 @@ light:
     red: led_r
     green: led_g
     blue: led_b
-    restore_mode: RESTORE_DEFAULT_OFF
+    restore_mode: ALWAYS_OFF
     entity_category: config
