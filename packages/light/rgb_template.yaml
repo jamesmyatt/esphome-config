@@ -1,0 +1,24 @@
+defaults:
+  rgb_template_id: rgb_template
+
+light:
+  - id: ${rgb_template_id}
+    platform: rgb
+    name: Light
+    red: ${rgb_template_id}_out_r
+    green: ${rgb_template_id}_out_g
+    blue: ${rgb_template_id}_out_b
+
+output:
+  - id: ${rgb_template_id}_out_r
+    platform: template
+    type: float
+    write_action: []
+  - id: ${rgb_template_id}_out_g
+    platform: template
+    type: float
+    write_action: []
+  - id: ${rgb_template_id}_out_b
+    platform: template
+    type: float
+    write_action: []
