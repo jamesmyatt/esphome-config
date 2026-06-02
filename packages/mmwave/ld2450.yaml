@@ -1,0 +1,288 @@
+defaults:
+  ld2450_uart: uart_ld2450
+  ld2450_id: ld2450_radar
+  ld2450_tx: null
+  ld2450_rx: null
+  ld2450_device_id: null
+
+uart:
+  - id: ${ld2450_uart}
+    tx_pin: ${ld2450_tx}
+    rx_pin: ${ld2450_rx}
+    baud_rate: 256000
+    parity: NONE
+    stop_bits: 1
+
+ld2450:
+  - id: ${ld2450_id}
+    uart_id: ${ld2450_uart}
+
+binary_sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    has_target:
+      id: ${ld2450_id}_presence
+      name: Presence
+      device_id: ${ld2450_device_id}
+    has_moving_target:
+      id: ${ld2450_id}_moving_target
+      name: Moving Target
+      device_id: ${ld2450_device_id}
+    has_still_target:
+      id: ${ld2450_id}_still_target
+      name: Still Target
+      device_id: ${ld2450_device_id}
+
+number:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    presence_timeout:
+      id: ${ld2450_id}_timeout
+      name: Timeout
+      device_id: ${ld2450_device_id}
+    zone_1:
+      x1:
+        id: ${ld2450_id}_zone1_x1
+        name: Zone-1 X1
+        device_id: ${ld2450_device_id}
+      y1:
+        id: ${ld2450_id}_zone1_y1
+        name: Zone-1 Y1
+        device_id: ${ld2450_device_id}
+      x2:
+        id: ${ld2450_id}_zone1_x2
+        name: Zone-1 X2
+        device_id: ${ld2450_device_id}
+      y2:
+        id: ${ld2450_id}_zone1_y2
+        name: Zone-1 Y2
+        device_id: ${ld2450_device_id}
+    zone_2:
+      x1:
+        id: ${ld2450_id}_zone2_x1
+        name: Zone-2 X1
+        device_id: ${ld2450_device_id}
+      y1:
+        id: ${ld2450_id}_zone2_y1
+        name: Zone-2 Y1
+        device_id: ${ld2450_device_id}
+      x2:
+        id: ${ld2450_id}_zone2_x2
+        name: Zone-2 X2
+        device_id: ${ld2450_device_id}
+      y2:
+        id: ${ld2450_id}_zone2_y2
+        name: Zone-2 Y2
+        device_id: ${ld2450_device_id}
+    zone_3:
+      x1:
+        id: ${ld2450_id}_zone3_x1
+        name: Zone-3 X1
+        device_id: ${ld2450_device_id}
+      y1:
+        id: ${ld2450_id}_zone3_y1
+        name: Zone-3 Y1
+        device_id: ${ld2450_device_id}
+      x2:
+        id: ${ld2450_id}_zone3_x2
+        name: Zone-3 X2
+        device_id: ${ld2450_device_id}
+      y2:
+        id: ${ld2450_id}_zone3_y2
+        name: Zone-3 Y2
+        device_id: ${ld2450_device_id}
+
+switch:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    bluetooth:
+      id: ${ld2450_id}_bluetooth
+      name: LD2450 Bluetooth
+      device_id: ${ld2450_device_id}
+    multi_target:
+      id: ${ld2450_id}_multi_target_tracking
+      name: Multi Target Tracking
+      device_id: ${ld2450_device_id}
+
+select:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    baud_rate:
+      id: ${ld2450_id}_baud_rate
+      name: LD2450 Baud rate
+      device_id: ${ld2450_device_id}
+    zone_type:
+      id: ${ld2450_id}_zone_type
+      name: Zone Type
+      device_id: ${ld2450_device_id}
+
+button:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    factory_reset:
+      id: ${ld2450_id}_factory_reset
+      name: LD2450 Factory Reset
+      device_id: ${ld2450_device_id}
+      entity_category: "config"
+    restart:
+      id: ${ld2450_id}_restart
+      name: LD2450 Restart
+      device_id: ${ld2450_device_id}
+      entity_category: "config"
+
+text_sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    version:
+      id: ${ld2450_id}_firmware
+      name: LD2450 Firmware
+      device_id: ${ld2450_device_id}
+    mac_address:
+      id: ${ld2450_id}_bt_mac
+      name: LD2450 BT MAC
+      device_id: ${ld2450_device_id}
+    target_1:
+      direction:
+        id: ${ld2450_id}_target1_direction
+        name: Target-1 Direction
+        device_id: ${ld2450_device_id}
+    target_2:
+      direction:
+        id: ${ld2450_id}_target2_direction
+        name: Target-2 Direction
+        device_id: ${ld2450_device_id}
+    target_3:
+      direction:
+        id: ${ld2450_id}_target3_direction
+        name: Target-3 Direction
+        device_id: ${ld2450_device_id}
+
+sensor:
+  - platform: ld2450
+    ld2450_id: ${ld2450_id}
+    target_count:
+      id: ${ld2450_id}_all_all_target_count
+      name: Presence Target Count
+      device_id: ${ld2450_device_id}
+    still_target_count:
+      id: ${ld2450_id}_all_still_target_count
+      name: Still Target Count
+      device_id: ${ld2450_device_id}
+    moving_target_count:
+      id: ${ld2450_id}_all_moving_target_count
+      name: Moving Target Count
+      device_id: ${ld2450_device_id}
+    target_1:
+      x:
+        id: ${ld2450_id}_target1_x
+        name: Target-1 X
+        device_id: ${ld2450_device_id}
+      y:
+        id: ${ld2450_id}_target1_y
+        name: Target-1 Y
+        device_id: ${ld2450_device_id}
+      speed:
+        id: ${ld2450_id}_target1_speed
+        name: Target-1 Speed
+        device_id: ${ld2450_device_id}
+      angle:
+        id: ${ld2450_id}_target1_angle
+        name: Target-1 Angle
+        device_id: ${ld2450_device_id}
+      distance:
+        id: ${ld2450_id}_target1_distance
+        name: Target-1 Distance
+        device_id: ${ld2450_device_id}
+      resolution:
+        id: ${ld2450_id}_target1_resolution
+        name: Target-1 Resolution
+        device_id: ${ld2450_device_id}
+    target_2:
+      x:
+        id: ${ld2450_id}_target2_x
+        name: Target-2 X
+        device_id: ${ld2450_device_id}
+      y:
+        id: ${ld2450_id}_target2_y
+        name: Target-2 Y
+        device_id: ${ld2450_device_id}
+      speed:
+        id: ${ld2450_id}_target2_speed
+        name: Target-2 Speed
+        device_id: ${ld2450_device_id}
+      angle:
+        id: ${ld2450_id}_target2_angle
+        name: Target-2 Angle
+        device_id: ${ld2450_device_id}
+      distance:
+        id: ${ld2450_id}_target2_distance
+        name: Target-2 Distance
+        device_id: ${ld2450_device_id}
+      resolution:
+        id: ${ld2450_id}_target2_resolution
+        name: Target-2 Resolution
+        device_id: ${ld2450_device_id}
+    target_3:
+      x:
+        id: ${ld2450_id}_target3_x
+        name: Target-3 X
+        device_id: ${ld2450_device_id}
+      y:
+        id: ${ld2450_id}_target3_y
+        name: Target-3 Y
+        device_id: ${ld2450_device_id}
+      speed:
+        id: ${ld2450_id}_target3_speed
+        name: Target-3 Speed
+        device_id: ${ld2450_device_id}
+      angle:
+        id: ${ld2450_id}_target3_angle
+        name: Target-3 Angle
+        device_id: ${ld2450_device_id}
+      distance:
+        id: ${ld2450_id}_target3_distance
+        name: Target-3 Distance
+        device_id: ${ld2450_device_id}
+      resolution:
+        id: ${ld2450_id}_target3_resolution
+        name: Target-3 Resolution
+        device_id: ${ld2450_device_id}
+    zone_1:
+      target_count:
+        id: ${ld2450_id}_zone1_all_target_count
+        name: Zone-1 All Target Count
+        device_id: ${ld2450_device_id}
+      still_target_count:
+        id: ${ld2450_id}_zone1_still_target_count
+        name: Zone-1 Still Target Count
+        device_id: ${ld2450_device_id}
+      moving_target_count:
+        id: ${ld2450_id}_zone1_moving_target_count
+        name: Zone-1 Moving Target Count
+        device_id: ${ld2450_device_id}
+    zone_2:
+      target_count:
+        id: ${ld2450_id}_zone2_all_target_count
+        name: Zone-2 All Target Count
+        device_id: ${ld2450_device_id}
+      still_target_count:
+        id: ${ld2450_id}_zone2_still_target_count
+        name: Zone-2 Still Target Count
+        device_id: ${ld2450_device_id}
+      moving_target_count:
+        id: ${ld2450_id}_zone2_moving_target_count
+        name: Zone-2 Moving Target Count
+        device_id: ${ld2450_device_id}
+    zone_3:
+      target_count:
+        id: ${ld2450_id}_zone3_all_target_count
+        name: Zone-3 All Target Count
+        device_id: ${ld2450_device_id}
+      still_target_count:
+        id: ${ld2450_id}_zone3_still_target_count
+        name: Zone-3 Still Target Count
+        device_id: ${ld2450_device_id}
+      moving_target_count:
+        id: ${ld2450_id}_zone3_moving_target_count
+        name: Zone-3 Moving Target Count
+        device_id: ${ld2450_device_id}
