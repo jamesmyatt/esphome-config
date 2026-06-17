@@ -14,12 +14,13 @@ uart:
     stop_bits: 1
 
 ld2450:
-  - id: ${ld2450_id}
+  - id: ${ld2450_id}_hub
     uart_id: ${ld2450_uart}
 
 binary_sensor:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_binary_sensors
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     has_target:
       id: ${ld2450_id}_presence
       name: Presence
@@ -34,8 +35,9 @@ binary_sensor:
       device_id: ${ld2450_device_id}
 
 number:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_numbers
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     presence_timeout:
       id: ${ld2450_id}_timeout
       name: Timeout
@@ -93,8 +95,9 @@ number:
         device_id: ${ld2450_device_id}
 
 switch:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_switches
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     bluetooth:
       id: ${ld2450_id}_bluetooth
       name: LD2450 Bluetooth
@@ -105,8 +108,9 @@ switch:
       device_id: ${ld2450_device_id}
 
 select:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_selects
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     baud_rate:
       id: ${ld2450_id}_baud_rate
       name: LD2450 Baud rate
@@ -117,8 +121,9 @@ select:
       device_id: ${ld2450_device_id}
 
 button:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_buttons
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     factory_reset:
       id: ${ld2450_id}_factory_reset
       name: LD2450 Factory Reset
@@ -131,8 +136,9 @@ button:
       entity_category: "config"
 
 text_sensor:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_text_sensors
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     version:
       id: ${ld2450_id}_firmware
       name: LD2450 Firmware
@@ -158,8 +164,9 @@ text_sensor:
         device_id: ${ld2450_device_id}
 
 sensor:
-  - platform: ld2450
-    ld2450_id: ${ld2450_id}
+  - id: ${ld2450_id}_sensors
+    platform: ld2450
+    ld2450_id: ${ld2450_id}_hub
     target_count:
       id: ${ld2450_id}_all_all_target_count
       name: Presence Target Count
