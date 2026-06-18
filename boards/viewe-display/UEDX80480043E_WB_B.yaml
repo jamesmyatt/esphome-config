@@ -85,7 +85,7 @@ display:
   - # 800x480 ST7262 RGB565
     id: display_lcd
     platform: mipi_rgb
-    model: custom
+    model: RPI
     update_interval: never
     color_order: RGB # ESP_PANEL_BOARD_LCD_COLOR_BGR_ORDER
     invert_colors: false # ESP_PANEL_BOARD_LCD_COLOR_INEVRT_BIT
@@ -126,7 +126,6 @@ display:
         - 47 # r2 ESP_PANEL_BOARD_LCD_RGB_IO_DATA13
         - 21 # r3 ESP_PANEL_BOARD_LCD_RGB_IO_DATA14
         - 14 # r4 ESP_PANEL_BOARD_LCD_RGB_IO_DATA15
-    init_sequence: []
 
 touchscreen:
   - id: touch_lcd
