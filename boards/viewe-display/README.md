@@ -20,3 +20,7 @@
 
 - https://viewedisplay.com/product/esp32-4-3-inch-800x480-rgb-ips-tft-display-touch-screen-arduino-lvgl/
 - https://github.com/VIEWESMART/UEDX80480043ESP32-4.3inch-Touch-Display
+
+According to manufacturer:
+
+> There is no software difference between UEDX80480043E-WB-A and UEDX80480043E-WB-B.
