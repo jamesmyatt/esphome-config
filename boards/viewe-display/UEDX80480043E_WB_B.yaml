@@ -34,7 +34,7 @@ uart:
 i2c:
   - id: bus_touch
     scl: GPIO20 # ESP_PANEL_BOARD_TOUCH_I2C_IO_SCL
-    sda: GPIO21 # ESP_PANEL_BOARD_TOUCH_I2C_IO_SDA
+    sda: GPIO19 # ESP_PANEL_BOARD_TOUCH_I2C_IO_SDA
     frequency: 400kHz # ESP_PANEL_BOARD_TOUCH_I2C_CLK_HZ
     scan: true
     scl_pullup_enabled: true # ESP_PANEL_BOARD_TOUCH_I2C_SCL_PULLUP
