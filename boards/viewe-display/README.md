@@ -2,7 +2,9 @@
 
 ## VIEWE Supported Boards (https://viewedisplay.com/)
 
-VIEWE Model Number Format (Take `UEDX24320024E` as an example):
+### VIEWE Model Number Format
+
+(Take `UEDX24320024E` as an example):
 
 ```raw
 *  +--------+----+----+----+----+--------+
