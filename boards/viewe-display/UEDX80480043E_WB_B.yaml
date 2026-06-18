@@ -129,7 +129,7 @@ display:
 
 touchscreen:
   - id: touch_lcd
-    platform: gt711
+    platform: gt911
     display: display_lcd
     i2c_id: bus_touch
     interrupt_pin: GPIO18 # ESP_PANEL_BOARD_TOUCH_INT_IO
