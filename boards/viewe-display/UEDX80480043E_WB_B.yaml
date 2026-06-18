@@ -93,7 +93,7 @@ display:
     dimensions:
       width: 800
       height: 480
-    reset_pin: null # ESP_PANEL_BOARD_LCD_RST_IO
+    # reset_pin: null # ESP_PANEL_BOARD_LCD_RST_IO
     # enable_pin: null # ??? ESP_PANEL_BOARD_LCD_RGB_IO_DISP
     de_pin: 40 # ESP_PANEL_BOARD_LCD_RGB_IO_DE
     hsync_pin: 39 # ESP_PANEL_BOARD_LCD_RGB_IO_HSYNC
@@ -126,6 +126,7 @@ display:
         - 47 # r2 ESP_PANEL_BOARD_LCD_RGB_IO_DATA13
         - 21 # r3 ESP_PANEL_BOARD_LCD_RGB_IO_DATA14
         - 14 # r4 ESP_PANEL_BOARD_LCD_RGB_IO_DATA15
+    init_sequence: []
 
 touchscreen:
   - id: touch_lcd
