@@ -70,12 +70,12 @@ output:
     pin: GPIO2 # ESP_PANEL_BOARD_BACKLIGHT_IO
     frequency: ${ledc_freq}
 
-# # Buttons
+# Buttons
 # binary_sensor:
 #   - id: btn_boot
 #     platform: gpio
 #     pin:
-#       number: GPIO0
+#       number: GPIO0 # Shared with led_builtin
 #       mode: INPUT_PULLUP
 #       inverted: true
 #       ignore_strapping_warning: true
