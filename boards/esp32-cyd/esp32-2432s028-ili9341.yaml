@@ -124,6 +124,7 @@ light:
     name: "Backlight"
     restore_mode: RESTORE_DEFAULT_ON
     entity_category: config
+    default_transition_length: 500ms
   - id: led_builtin
     platform: rgb
     name: "Status"

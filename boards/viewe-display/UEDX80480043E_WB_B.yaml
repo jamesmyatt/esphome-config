@@ -59,6 +59,7 @@ light:
     name: "Backlight"
     restore_mode: RESTORE_DEFAULT_ON
     entity_category: config
+    default_transition_length: 500ms
 
 output:
   - id: lcd_backlight_pwm
