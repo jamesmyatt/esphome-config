@@ -18,4 +18,3 @@ VIEWE Model Number Format (Take `UEDX24320024E` as an example):
 
 - https://viewedisplay.com/product/esp32-4-3-inch-800x480-rgb-ips-tft-display-touch-screen-arduino-lvgl/
 - https://github.com/VIEWESMART/UEDX80480043ESP32-4.3inch-Touch-Display
-- Similar: https://www.waveshare.com/esp32-s3-touch-lcd-4.3.htm

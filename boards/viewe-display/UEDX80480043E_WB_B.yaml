@@ -1,7 +1,6 @@
 # VIEWE 4.3" 800*480 ESP32-S3 Smart Display
 # https://viewedisplay.com/product/esp32-4-3-inch-800x480-rgb-ips-tft-display-touch-screen-arduino-lvgl/
 # https://github.com/VIEWESMART/UEDX80480043ESP32-4.3inch-Touch-Display
-# Similar: https://www.waveshare.com/esp32-s3-touch-lcd-4.3.htm
 
 # SoM is ESP32S3-MCN16R8
 
