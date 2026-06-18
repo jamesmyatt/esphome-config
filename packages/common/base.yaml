@@ -19,7 +19,6 @@ ota:
 time:
   - id: esptime
     platform: homeassistant
-    timezone: !secret timezone
 
 button:
   - id: btn_restart
