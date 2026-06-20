@@ -1,10 +1,11 @@
 defaults:
   rgb_template_id: rgb_template
+  rgb_template_name: Light
 
 light:
   - id: ${rgb_template_id}
     platform: rgb
-    name: Light
+    name: ${rgb_template_name}
     red: ${rgb_template_id}_out_r
     green: ${rgb_template_id}_out_g
     blue: ${rgb_template_id}_out_b

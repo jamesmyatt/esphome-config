@@ -1,0 +1,15 @@
+defaults:
+  mono_template_id: mono_template
+  mono_template_name: Light
+
+light:
+  - id: ${mono_template_id}
+    platform: monochromatic
+    name: ${mono_template_name}
+    output: ${mono_template_id}_out
+
+output:
+  - id: ${mono_template_id}_out
+    platform: template
+    type: float
+    write_action: []
