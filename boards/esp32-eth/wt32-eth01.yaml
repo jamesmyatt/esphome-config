@@ -1,0 +1,17 @@
+# SoM is WT32-S1
+# Do not use ethernet and wifi simulaneously
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk:
+    pin: GPIO0
+    mode: CLK_EXT_IN
+  phy_addr: 1
+  power_pin: GPIO16
