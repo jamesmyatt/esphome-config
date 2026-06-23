@@ -1,0 +1,92 @@
+defaults:
+  light_sensor_id: null
+  auto_brightness_name: "Backlight"
+
+script:
+  - id: update_brightness
+    mode: single
+    then: []
+
+select:
+  - id: auto_brightness_mode
+    platform: template
+    name: "${auto_brightness_name} Brightness Mode"
+    options:
+      - auto
+      - manual
+    restore_value: true
+    optimistic: true
+    disabled_by_default: true
+    entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
+
+number:
+  - id: auto_brightness_threshold
+    platform: template
+    name: "${auto_brightness_name} Light Threshold"
+    optimistic: true
+    min_value: 0
+    max_value: 100
+    step: 0.1
+    restore_value: true
+    initial_value: 5
+    unit_of_measurement: lx
+    disabled_by_default: true
+    entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
+  - id: auto_brightness_low
+    platform: template
+    name: "${auto_brightness_name} Low Brightness"
+    optimistic: true
+    min_value: 0
+    max_value: 1
+    step: 0.01
+    restore_value: true
+    initial_value: 0.3
+    disabled_by_default: true
+    entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
+  - id: auto_brightness_high
+    platform: template
+    name: "${auto_brightness_name} High Brightness"
+    optimistic: true
+    min_value: 0
+    max_value: 1
+    step: 0.01
+    restore_value: true
+    initial_value: 1
+    disabled_by_default: true
+    entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
+
+sensor:
+  - id: auto_brightness_target
+    platform: copy
+    source_id: ${light_sensor_id}
+    name: Auto Brightness Target
+    disabled_by_default: true
+    filter:
+      - lambda: |-
+          if (x < id(auto_brightness_threshold).state) {
+            return id(auto_brightness_low).state;
+          } else {
+            return id(auto_brightness_high).state;
+          }
+    on_value:
+      then:
+        - if:
+            condition:
+              select.is:
+                id: auto_brightness_mode
+                options: [auto]
+            then:
+              - script.execute:
+                  id: update_brightness
