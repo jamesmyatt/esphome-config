@@ -73,7 +73,7 @@ sensor:
     source_id: ${light_sensor_id}
     name: Auto Brightness Target
     disabled_by_default: true
-    filter:
+    filters:
       - lambda: |-
           if (x < id(auto_brightness_threshold).state) {
             return id(auto_brightness_low).state;
