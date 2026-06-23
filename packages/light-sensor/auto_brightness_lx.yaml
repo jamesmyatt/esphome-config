@@ -4,7 +4,7 @@ defaults:
 
 script:
   - id: update_brightness
-    mode: single
+    mode: restart
     then: []
 
 select:
@@ -18,6 +18,9 @@ select:
     optimistic: true
     disabled_by_default: true
     entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
 
 number:
   - id: auto_brightness_threshold
@@ -32,6 +35,9 @@ number:
     unit_of_measurement: lx
     disabled_by_default: true
     entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
   - id: auto_brightness_low
     platform: template
     name: "${auto_brightness_name} Low Brightness"
@@ -43,6 +49,9 @@ number:
     initial_value: 0.3
     disabled_by_default: true
     entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
   - id: auto_brightness_high
     platform: template
     name: "${auto_brightness_name} High Brightness"
@@ -54,20 +63,22 @@ number:
     initial_value: 1
     disabled_by_default: true
     entity_category: config
+    on_value:
+      then:
+        - component.update: auto_brightness_target
 
 sensor:
   - id: auto_brightness_target
-    platform: copy
-    source_id: ${light_sensor_id}
+    platform: template
     name: Auto Brightness Target
     disabled_by_default: true
-    filters:
-      - lambda: |-
-          if (x < id(auto_brightness_threshold).state) {
-            return id(auto_brightness_low).state;
-          } else {
-            return id(auto_brightness_high).state;
-          }
+    update_interval: 1s
+    lambda: |-
+      if (id(${light_sensor_id}).state < id(auto_brightness_threshold).state) {
+        return id(auto_brightness_low).state;
+      } else {
+        return id(auto_brightness_high).state;
+      }
     on_value:
       then:
         - if:
