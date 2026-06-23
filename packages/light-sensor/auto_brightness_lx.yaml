@@ -72,6 +72,7 @@ sensor:
     platform: template
     name: Auto Brightness Target
     disabled_by_default: true
+    entity_category: diagnostic
     update_interval: 1s
     lambda: |-
       if (id(${light_sensor_id}).state < id(auto_brightness_threshold).state) {
