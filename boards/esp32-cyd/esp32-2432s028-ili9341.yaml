@@ -49,7 +49,6 @@ sensor:
     name: "ADC Voltage Raw"
     state_class: measurement
     accuracy_decimals: 3
-    samples: 4
     update_interval: 1s
     disabled_by_default: true
   - id: light_level_raw
