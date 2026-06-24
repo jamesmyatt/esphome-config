@@ -48,6 +48,8 @@ sensor:
     attenuation: auto
     name: "ADC Voltage Raw"
     state_class: measurement
+    accuracy_decimals: 3
+    samples: 4
     update_interval: 1s
     disabled_by_default: true
   - id: light_level_raw
@@ -63,7 +65,6 @@ sensor:
     accuracy_decimals: 3
     device_class: ""
     icon: mdi:brightness-5
-    state_class: measurement
     disabled_by_default: true
 
 display:
