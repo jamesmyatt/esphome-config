@@ -3,6 +3,14 @@ defaults:
   auto_brightness_name: "Backlight"
 
 script:
+  # Extend this script to effect changes in brightness
+  # Note that this is only called automatically when the brightness mode is auto.
+  # e.g.
+  #   id: !extend update_brightness
+  #   then:
+  #     - light.control:
+  #         id: backlight
+  #         brightness: !lambda "return id(auto_brightness_target).state;"
   - id: update_brightness
     mode: restart
     then: []
@@ -68,12 +76,13 @@ number:
         - component.update: auto_brightness_target
 
 sensor:
+  # Note that this lambda can be replaced to give different curves
   - id: auto_brightness_target
     platform: template
     name: Auto Brightness Target
     disabled_by_default: true
     entity_category: diagnostic
-    update_interval: 1s
+    update_interval: 1s # Better to patch ${light_sensor_id} to update this via on_value, but this will always work
     lambda: |-
       if (id(${light_sensor_id}).state < id(auto_brightness_threshold).state) {
         return id(auto_brightness_low).state;
