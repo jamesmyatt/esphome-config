@@ -54,7 +54,7 @@ sensor:
     platform: copy
     name: "Light Level Raw"
     source_id: adc_ldr_raw
-    filter:
+    filters:
       - lambda: "return 1.0 - x / 3.0;"
       - clamp:
           min_value: 0.0
