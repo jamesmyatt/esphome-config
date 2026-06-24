@@ -48,18 +48,22 @@ sensor:
     attenuation: auto
     name: "ADC Voltage Raw"
     state_class: measurement
+    accuracy_decimals: 3
     update_interval: 1s
     disabled_by_default: true
   - id: light_level_raw
-    platform: template
+    platform: copy
     name: "Light Level Raw"
-    lambda: "return max(1.0 - id(adc_ldr_raw).state / 3.0, 0.0);"
+    source_id: adc_ldr_raw
+    filters:
+      - lambda: "return 1.0 - x / 3.0;"
+      - clamp:
+          min_value: 0.0
+          max_value: 1.0
     unit_of_measurement: ""
     accuracy_decimals: 3
     device_class: ""
     icon: mdi:brightness-5
-    state_class: measurement
-    update_interval: 1s
     disabled_by_default: true
 
 display:
