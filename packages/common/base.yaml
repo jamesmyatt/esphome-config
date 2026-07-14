@@ -14,7 +14,6 @@ api:
 ota:
   - id: ota_esphome
     platform: esphome
-    password: !secret ota_password
 
 time:
   - id: esptime
