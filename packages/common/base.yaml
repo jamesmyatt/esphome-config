@@ -10,6 +10,7 @@ esphome:
 logger:
 
 api:
+  encryption:
 
 ota:
   - id: ota_esphome
