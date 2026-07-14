@@ -1,5 +1,6 @@
 # Shared WiFi with sensors
 wifi:
+  id: wifi_id
 
 sensor:
   - id: sensor_wifi_signal

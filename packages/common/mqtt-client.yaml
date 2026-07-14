@@ -3,6 +3,7 @@ defaults:
 
 # See https://esphome.io/components/mqtt/
 mqtt:
+  id: mqtt_id
   discovery: False # disable entity discovery
   discover_ip: True # enable device discovery
   topic_prefix: "esphome/${name}"
