@@ -10,11 +10,12 @@ esphome:
 logger:
 
 api:
+  id: api_id
+  encryption: # Uses key set by Home Assistant, unless set explicitly
 
 ota:
   - id: ota_esphome
     platform: esphome
-    password: !secret ota_password
 
 time:
   - id: esptime
