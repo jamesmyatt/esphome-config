@@ -17,12 +17,12 @@ repos:
       - id: check-yaml
         args: [--unsafe] # since esphome uses custom tags
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: v3.9.5
+    rev: v3.9.6
     hooks:
       - id: prettier
         exclude: \.vscode
   - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
-    rev: 3.6.1
+    rev: 3.8.0
     hooks:
       - id: editorconfig-checker
         alias: ec
