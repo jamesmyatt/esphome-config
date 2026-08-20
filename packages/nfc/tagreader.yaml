@@ -16,8 +16,6 @@ esphome:
   comment: NFC Tag Reader
 
 globals:
-  - id: nfc_tag
-    type: nfc::NfcTag
   - id: nfc_uid
     type: std::string
   - id: ha_tag_id
@@ -39,9 +37,6 @@ script:
   - id: tag_reader
     mode: single
     then:
-      # Parse tag data
-      - lambda: |-
-          id(ha_tag_id) = get_ha_tag_ndef(id(nfc_tag));
       # Send tag data
       - text_sensor.template.publish:
           id: tag_uid

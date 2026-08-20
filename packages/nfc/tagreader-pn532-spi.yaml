@@ -22,5 +22,5 @@ pn532_spi:
       - then:
           - lambda: |-
               id(nfc_uid) = x;
-              id(nfc_tag) = tag;
+              id(ha_tag_id) = get_ha_tag_ndef(tag);
               id(tag_reader).execute();
