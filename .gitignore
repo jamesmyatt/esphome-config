@@ -6,6 +6,7 @@
 secrets.yaml
 .env
 .env.*
+!.env.example
 
 # Python-generated files
 __pycache__/
