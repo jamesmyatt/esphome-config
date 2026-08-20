@@ -1,6 +1,7 @@
 # Waveshare 3.5" 320×480 ESP32-S3 Touch Display (B)
 # Model: ESP32-S3-Touch-LCD-3.5B
 # https://docs.waveshare.com/ESP32-S3-Touch-LCD-3.5B
+# https://github.com/waveshareteam/ESP32-S3-Touch-LCD-3.5B
 
 # See vendor demo:
 # "ESP32-S3-Touch-LCD-3.5B-Demo/Arduino/examples/09_lvgl_arduino_v8"
@@ -145,9 +146,10 @@ display:
     spi_id: bus_lcd
     data_rate: 40MHz
     cs_pin: GPIO12
-    reset_pin:
+    reset_pin: # Not sure this is needed
       pca9554: exio
       number: 1
+    # What about init_sequence?
 
 touchscreen:
   - id: touch_lcd
