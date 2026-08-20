@@ -118,9 +118,8 @@ binary_sensor:
     platform: gpio
     pin:
       pca9554: exio
-      number: 6 # SYS_OUT
+      number: 6 # SYS_OUT, active high
       mode: INPUT
-      inverted: true
     name: "Power"
     filters:
       - delayed_off: 10ms # debounce
