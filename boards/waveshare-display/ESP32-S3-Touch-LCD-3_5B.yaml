@@ -14,7 +14,7 @@
 
 # ASSUMPTIONS:
 #
-# - homeassistant time source uses id `esp_time`.
+# - homeassistant time source uses id `esptime`.
 
 defaults:
   ledc_freq: 4882Hz # 14-bit
@@ -88,7 +88,7 @@ time: # See https://esphome.io/components/time/pcf85063/#full-configuration-exam
     i2c_id: bus_i2c
     update_interval: never # repeated synchronization is not necessary
     # No interrupt pin option
-  - id: !extend esp_time
+  - id: !extend esptime
     on_time_sync:
       - then:
           # Update the RTC when the synchronization was successful
