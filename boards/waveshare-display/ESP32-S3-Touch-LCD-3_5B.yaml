@@ -122,8 +122,9 @@ binary_sensor:
       mode: INPUT
     name: "Power"
     filters:
-      - delayed_off: 10ms # debounce
+      - delayed_off: 20ms # debounce
     entity_category: diagnostic
+    disabled_by_default: true
 
 # Lights
 output:
