@@ -11,6 +11,9 @@
 defaults:
   ledc_freq: 4882Hz # 14-bit
 
+esphome:
+  min_version: 2026.8.0
+
 esp32:
   variant: esp32s3
   flash_size: 16MB
@@ -48,7 +51,7 @@ light:
   - id: led_builtin
     platform: esp32_rmt_led_strip
     name: "Status"
-    rgb_order: GRB
+    channel_colors: GRB
     pin:
       number: GPIO0
       ignore_strapping_warning: true
