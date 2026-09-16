@@ -3,15 +3,9 @@ name = "esphome-config"
 version = "0"
 description = "ESPHome configuration packages and devices."
 readme = "README.md"
-authors = [
-  {name = "James Myatt", email = "james@jamesmyatt.co.uk"},
-]
-requires-python = ">=3.13"
-dependencies = [
-    "esphome~=2026.8.0",
-]
+authors = [{ name = "James Myatt", email = "james@jamesmyatt.co.uk" }]
+requires-python = ">=3.14"
+dependencies = ["esphome~=2026.9.0"]
 
 [dependency-groups]
-dev = [
-    "pre-commit>=4.6.2",
-]
+dev = ["pre-commit>=4.6.2"]
