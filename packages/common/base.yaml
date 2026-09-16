@@ -5,7 +5,7 @@ defaults:
 esphome:
   name: ${name}
   friendly_name: "${name}"
-  min_version: 2025.5.0
+  min_version: 2025.9.0
 
 logger:
 
@@ -16,6 +16,7 @@ api:
 ota:
   - id: ota_esphome
     platform: esphome
+    encryption:
 
 time:
   - id: esptime
