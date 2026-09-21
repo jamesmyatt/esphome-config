@@ -12,6 +12,7 @@ defaults:
   ledc_freq: 4882Hz # 14-bit
 
 esphome:
+  comment: VIEWE UEDX80480043E-WB
   min_version: 2026.8.0
 
 esp32:
@@ -29,14 +30,13 @@ logger:
   # Use USB bridge
   hardware_uart: UART0
 
-# UART connected to RX/TX pins and USB bridge
+# Buses
 uart:
-  - id: bus_uart0
+  - id: bus_uart0 # on RX/TX pins and USB bridge
     tx_pin: GPIO43
     rx_pin: GPIO44
     baud_rate: 115200
 
-# I2C connected to touch
 i2c:
   - id: bus_touch
     scl: GPIO20 # ESP_PANEL_BOARD_TOUCH_I2C_IO_SCL
@@ -46,7 +46,27 @@ i2c:
     scl_pullup_enabled: false # ESP_PANEL_BOARD_TOUCH_I2C_SCL_PULLUP
     sda_pullup_enabled: false # ESP_PANEL_BOARD_TOUCH_I2C_SDA_PULLUP
 
+# Sensors
+# binary_sensor:
+#   - id: btn_boot
+#     platform: gpio
+#     pin:
+#       number: GPIO0 # Shared with led_builtin
+#       mode: INPUT_PULLUP
+#       inverted: true
+#       ignore_strapping_warning: true
+#     name: "Boot"
+#     filters:
+#       - delayed_off: 10ms # debounce
+#     entity_category: diagnostic
+
 # Lights
+output:
+  - id: lcd_backlight_pwm
+    platform: ledc
+    pin: GPIO2 # ESP_PANEL_BOARD_BACKLIGHT_IO
+    frequency: ${ledc_freq}
+
 light:
   - id: led_builtin
     platform: esp32_rmt_led_strip
@@ -67,33 +87,12 @@ light:
     entity_category: config
     default_transition_length: 500ms
 
-output:
-  - id: lcd_backlight_pwm
-    platform: ledc
-    pin: GPIO2 # ESP_PANEL_BOARD_BACKLIGHT_IO
-    frequency: ${ledc_freq}
-
-# Buttons
-# binary_sensor:
-#   - id: btn_boot
-#     platform: gpio
-#     pin:
-#       number: GPIO0 # Shared with led_builtin
-#       mode: INPUT_PULLUP
-#       inverted: true
-#       ignore_strapping_warning: true
-#     name: "Boot"
-#     filters:
-#       - delayed_off: 10ms # debounce
-#     entity_category: diagnostic
-
 # Display
 display:
   - # 800x480 ST7262 RGB565
     id: display_lcd
     platform: mipi_rgb
     model: RPI
-    update_interval: never
     color_order: RGB # ESP_PANEL_BOARD_LCD_COLOR_BGR_ORDER
     invert_colors: false # ESP_PANEL_BOARD_LCD_COLOR_INEVRT_BIT
     pclk_frequency: 15MHz # ESP_PANEL_BOARD_LCD_RGB_CLK_HZ

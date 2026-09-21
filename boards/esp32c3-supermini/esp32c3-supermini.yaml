@@ -5,26 +5,7 @@ esp32:
   framework:
     type: esp-idf
 
-# Outputs
-output:
-  - id: out_builtin
-    platform: ledc
-    pin:
-      number: GPIO8
-      inverted: true
-      ignore_strapping_warning: true
-    frequency: 4882Hz # 14-bit
-
-# Lights
-light:
-  - id: led_builtin
-    platform: monochromatic
-    output: out_builtin
-    name: "Status"
-    restore_mode: ALWAYS_OFF
-    entity_category: config
-
-# Buttons
+# Sensors
 binary_sensor:
   - id: btn_boot
     platform: gpio
@@ -37,3 +18,21 @@ binary_sensor:
     filters:
       - delayed_off: 10ms # debounce
     entity_category: diagnostic
+
+# Lights
+output:
+  - id: out_builtin
+    platform: ledc
+    pin:
+      number: GPIO8
+      inverted: true
+      ignore_strapping_warning: true
+    frequency: 4882Hz # 14-bit
+
+light:
+  - id: led_builtin
+    platform: monochromatic
+    output: out_builtin
+    name: "Status"
+    restore_mode: ALWAYS_OFF
+    entity_category: config

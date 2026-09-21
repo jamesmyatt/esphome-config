@@ -9,26 +9,14 @@ esp32:
   framework:
     type: esp-idf
 
-# UART connected to RX/TX pins
+# Buses
 uart:
-  - id: bus_uart0
+  - id: bus_uart0 # on RX/TX pins
     tx_pin: GPIO21
     rx_pin: GPIO20
     baud_rate: 115200
 
-# Lights
-light:
-  - id: led_builtin
-    platform: esp32_rmt_led_strip
-    name: "Status"
-    channel_colors: GRB
-    pin: GPIO10
-    num_leds: 1
-    chipset: ws2812
-    restore_mode: ALWAYS_OFF
-    entity_category: config
-
-# Buttons
+# Sensors
 binary_sensor:
   - id: btn_boot
     platform: gpio
@@ -41,3 +29,15 @@ binary_sensor:
     filters:
       - delayed_off: 10ms # debounce
     entity_category: diagnostic
+
+# Lights
+light:
+  - id: led_builtin
+    platform: esp32_rmt_led_strip
+    name: "Status"
+    channel_colors: GRB
+    pin: GPIO10
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    entity_category: config

@@ -1,0 +1,12 @@
+# Write the system clock back to a PCF85063 RTC on each network time sync.
+# Needs a network time source (${time_id}) and a board with a PCF85063 (${rtc_id}).
+defaults:
+  time_id: esptime
+  rtc_id: rtc_time
+
+time:
+  - id: !extend ${time_id}
+    on_time_sync:
+      - then:
+          - pcf85063.write_time:
+              id: ${rtc_id}
