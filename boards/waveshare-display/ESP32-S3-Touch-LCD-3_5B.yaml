@@ -114,17 +114,17 @@ binary_sensor:
     filters:
       - delayed_off: 10ms # debounce
     entity_category: diagnostic
-  - id: btn_power
-    platform: gpio
-    pin:
-      pca9554: exio
-      number: 6 # SYS_OUT, active high
-      mode: INPUT
-    name: "Power"
-    filters:
-      - delayed_off: 20ms # debounce
-    entity_category: diagnostic
-    disabled_by_default: true
+  # - id: btn_power
+  #   platform: gpio
+  #   pin:
+  #     pca9554: exio
+  #     number: 6 # SYS_OUT, active high
+  #     mode: INPUT
+  #   name: "Power"
+  #   filters:
+  #     - delayed_off: 20ms # debounce
+  #   entity_category: diagnostic
+  #   disabled_by_default: true
 
 # Lights
 output:
