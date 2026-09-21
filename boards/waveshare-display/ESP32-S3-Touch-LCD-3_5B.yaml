@@ -8,6 +8,11 @@
 
 # SoC is ESP32-S3R8
 
+# NOTES:
+#
+# - Use `packages/time/rtc-sync-pcf85063.yaml` to write time to RTC
+#   on network sync.
+
 # TODO:
 #
 # - Audio codec (i2c, i2s) ES8311 - https://esphome.io/components/audio_dac/es8311/
@@ -92,7 +97,6 @@ time: # See https://esphome.io/components/time/pcf85063/#full-configuration-exam
     i2c_id: bus_i2c
     update_interval: never # repeated synchronization is not necessary
     # No interrupt pin option
-    # Write-back on network sync: packages/time/rtc-sync-pcf85063.yaml
 
 # Sensors
 binary_sensor:
