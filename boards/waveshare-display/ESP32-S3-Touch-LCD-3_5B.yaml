@@ -1,0 +1,159 @@
+# Waveshare 3.5" 320×480 ESP32-S3 Touch Display (B)
+# Model: ESP32-S3-Touch-LCD-3.5B
+# https://docs.waveshare.com/ESP32-S3-Touch-LCD-3.5B
+
+# See vendor demo:
+# "ESP32-S3-Touch-LCD-3.5B-Demo/Arduino/examples/09_lvgl_arduino_v8"
+
+# Onboard QMI8658 6-axis IMU (3-axis accelerometer, 3-axis gyroscope), capable of detecting device orientation changes, step counting, and other functions
+# Onboard PWR and BOOT side buttons, configurable for custom function development
+# Onboard 3.7V MX1.25 lithium battery charge/discharge interface
+# The benefits of using AXP2101 include efficient power management, support for multiple output voltages, charging and battery management functions, and optimization of battery life
+
+# SoC is ESP32-S3R8
+
+# ASSUMPTIONS:
+#
+# - homeassistant time source uses id `esp_time`.
+
+defaults:
+  ledc_freq: 4882Hz # 14-bit
+
+esphome:
+  comment: Waveshare ESP32-S3-Touch-LCD-3.5B
+
+  on_boot:
+    - then:
+        # read the RTC time once when the system boots
+        pcf85063.read_time:
+
+esp32:
+  variant: esp32s3
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+
+psram:
+  mode: octal
+  speed: 80MHz
+  ignore_not_found: false # enable aggressive optimisations
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG # Native USB
+
+# TODO: Audio codec (i2c, i2s) ES8311 - https://esphome.io/components/audio_dac/es8311/
+# TODO: IMU (i2c) QMI8658 - https://esphome.io/components/motion/qmi8658/
+# TODO: PMU (i2c) AXP2101 - not yet in esphome
+
+# Buses
+uart:
+  - id: bus_uart0 # UART bus on header
+    tx_pin: GPIO43
+    rx_pin: GPIO44
+    baud_rate: 115200
+
+spi:
+  - id: bus_lcd
+    type: quad
+    clk_pin: GPIO5
+    data_pins:
+      - GPIO1
+      - GPIO2
+      - GPIO3
+      - GPIO4
+    interface: hardware
+  - id: bus_sd # SPI bus on header
+    clk_pin: GPIO11
+    mosi_pin: GPIO10
+    miso_pin: GPIO9
+    interface: hardware
+
+i2c:
+  - id: bus_i2c # I2C bus on header
+    scl: GPIO7
+    sda: GPIO8
+    frequency: 400kHz
+    scan: true
+    scl_pullup_enabled: true
+    sda_pullup_enabled: true
+
+pca9554:
+  - id: exio
+    address: 0x20 # A0=L, A1=L, A2=L
+
+# Internal
+time: # See https://esphome.io/components/time/pcf85063/#full-configuration-example
+  - id: rtc_time
+    platform: pcf85063
+    i2c_id: bus_i2c
+    update_interval: never # repeated synchronization is not necessary
+    # No interrupt pin option
+  - id: !extend esp_time
+    on_time_sync:
+      - then:
+          # Update the RTC when the synchronization was successful
+          pcf85063.write_time:
+
+# Sensors
+binary_sensor:
+  - id: btn_boot
+    platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: true
+      ignore_strapping_warning: true # built-in
+    name: "Boot"
+    filters:
+      - delayed_off: 10ms # debounce
+    entity_category: diagnostic
+  - id: btn_power
+    platform: gpio
+    pin:
+      pca9554: exio
+      number: 6 # SYS_OUT
+      mode: INPUT
+      inverted: true
+    name: "Power"
+    filters:
+      - delayed_off: 10ms # debounce
+    entity_category: diagnostic
+
+# Lights
+output:
+  - id: lcd_backlight_pwm
+    platform: ledc
+    pin: GPIO6
+    frequency: ${ledc_freq}
+
+light:
+  - id: backlight
+    platform: monochromatic
+    output: lcd_backlight_pwm
+    name: "Backlight"
+    restore_mode: RESTORE_DEFAULT_ON
+    entity_category: config
+    default_transition_length: 500ms
+
+# Display
+display:
+  - # 320x240 AXS15231B QSPI
+    # See https://github.com/esphome/esphome/pull/17513
+    id: display_lcd
+    platform: mipi_spi
+    model: axs15231 # Future: WAVESHARE-ESP32-S3-TOUCH-LCD-3.5B
+    spi_id: bus_lcd
+    data_rate: 40MHz
+    cs_pin: GPIO12
+    reset_pin:
+      pca9554: exio
+      number: 1
+
+touchscreen:
+  - id: touch_lcd
+    platform: axs15231
+    display: display_lcd
+    i2c_id: bus_i2c
+    interrupt_pin:
+      pca9554: exio
+      number: 2
