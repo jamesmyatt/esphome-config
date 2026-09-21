@@ -79,12 +79,13 @@ i2c:
     scl: GPIO7
     sda: GPIO8
     frequency: 400kHz
-    scan: true
+    scan: false
     scl_pullup_enabled: true
     sda_pullup_enabled: true
 
 pca9554:
   - id: exio
+    i2c_id: bus_i2c
     address: 0x20 # A0=L, A1=L, A2=L
     # From schematic:
     # - 0 CAM_PWDN   1 LCD_RST   2 TP_INT    3 SD_CS
