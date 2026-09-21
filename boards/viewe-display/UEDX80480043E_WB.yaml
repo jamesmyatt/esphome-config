@@ -12,6 +12,7 @@ defaults:
   ledc_freq: 4882Hz # 14-bit
 
 esphome:
+  comment: VIEWE UEDX80480043E-WB
   min_version: 2026.8.0
 
 esp32:
