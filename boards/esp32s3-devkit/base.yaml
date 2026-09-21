@@ -27,26 +27,14 @@ logger:
   # Use USB bridge
   hardware_uart: UART0
 
-# UART connected to RX/TX pins and USB bridge
+# Buses
 uart:
-  - id: bus_uart0
+  - id: bus_uart0 # on RX/TX pins and USB bridge
     tx_pin: GPIO43
     rx_pin: GPIO44
     baud_rate: 115200
 
-# Lights
-light:
-  - id: led_builtin
-    platform: esp32_rmt_led_strip
-    name: "Status"
-    channel_colors: GRB
-    pin: ${rgb_pin}
-    num_leds: 1
-    chipset: ws2812
-    restore_mode: ALWAYS_OFF
-    entity_category: config
-
-# Buttons
+# Sensors
 binary_sensor:
   - id: btn_boot
     platform: gpio
@@ -59,3 +47,15 @@ binary_sensor:
     filters:
       - delayed_off: 10ms # debounce
     entity_category: diagnostic
+
+# Lights
+light:
+  - id: led_builtin
+    platform: esp32_rmt_led_strip
+    name: "Status"
+    channel_colors: GRB
+    pin: ${rgb_pin}
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    entity_category: config

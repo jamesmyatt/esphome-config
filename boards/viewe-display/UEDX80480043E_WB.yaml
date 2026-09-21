@@ -29,14 +29,13 @@ logger:
   # Use USB bridge
   hardware_uart: UART0
 
-# UART connected to RX/TX pins and USB bridge
+# Buses
 uart:
-  - id: bus_uart0
+  - id: bus_uart0 # on RX/TX pins and USB bridge
     tx_pin: GPIO43
     rx_pin: GPIO44
     baud_rate: 115200
 
-# I2C connected to touch
 i2c:
   - id: bus_touch
     scl: GPIO20 # ESP_PANEL_BOARD_TOUCH_I2C_IO_SCL
@@ -46,7 +45,27 @@ i2c:
     scl_pullup_enabled: false # ESP_PANEL_BOARD_TOUCH_I2C_SCL_PULLUP
     sda_pullup_enabled: false # ESP_PANEL_BOARD_TOUCH_I2C_SDA_PULLUP
 
+# Sensors
+# binary_sensor:
+#   - id: btn_boot
+#     platform: gpio
+#     pin:
+#       number: GPIO0 # Shared with led_builtin
+#       mode: INPUT_PULLUP
+#       inverted: true
+#       ignore_strapping_warning: true
+#     name: "Boot"
+#     filters:
+#       - delayed_off: 10ms # debounce
+#     entity_category: diagnostic
+
 # Lights
+output:
+  - id: lcd_backlight_pwm
+    platform: ledc
+    pin: GPIO2 # ESP_PANEL_BOARD_BACKLIGHT_IO
+    frequency: ${ledc_freq}
+
 light:
   - id: led_builtin
     platform: esp32_rmt_led_strip
@@ -66,26 +85,6 @@ light:
     restore_mode: RESTORE_DEFAULT_ON
     entity_category: config
     default_transition_length: 500ms
-
-output:
-  - id: lcd_backlight_pwm
-    platform: ledc
-    pin: GPIO2 # ESP_PANEL_BOARD_BACKLIGHT_IO
-    frequency: ${ledc_freq}
-
-# Buttons
-# binary_sensor:
-#   - id: btn_boot
-#     platform: gpio
-#     pin:
-#       number: GPIO0 # Shared with led_builtin
-#       mode: INPUT_PULLUP
-#       inverted: true
-#       ignore_strapping_warning: true
-#     name: "Boot"
-#     filters:
-#       - delayed_off: 10ms # debounce
-#     entity_category: diagnostic
 
 # Display
 display:
