@@ -35,9 +35,10 @@ button:
     disabled_by_default: true
 
 sensor:
-  - id: sensor_uptime
+  - id: sensor_last_boot
     platform: uptime
-    name: "Uptime"
+    name: "Last Boot"
+    type: timestamp
 
 text_sensor:
   - platform: version
