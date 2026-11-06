@@ -41,5 +41,11 @@ sensor:
     type: timestamp
 
 text_sensor:
-  - platform: version
+  - id: sensor_esphome_version
+    platform: version
     name: "ESPHome Version"
+
+binary_sensor:
+  - id: sensor_status
+    platform: status
+    name: "Status"
