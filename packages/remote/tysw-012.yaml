@@ -42,7 +42,6 @@ output:
     platform: ${pwm_platform}
     pin:
       number: ${led_pin}
-      inverted: true
 
 light:
   - id: light_led
