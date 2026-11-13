@@ -5,6 +5,7 @@ defaults:
   ir_rx_pin_number: GPIO5
   key_pin: GPIO13
   led_pin: GPIO4
+  pwm_platform: esp8266_pwm
 
 esphome:
   comment: TYSW-012 Round Universal Remote Control
@@ -38,11 +39,10 @@ binary_sensor:
 
 output:
   - id: out_led
-    platform: esp8266_pwm
+    platform: ${pwm_platform}
     pin:
       number: ${led_pin}
       inverted: true
-    # frequency: 4882Hz # 14-bit
 
 light:
   - id: light_led
