@@ -1,0 +1,53 @@
+# Board from https://developer.tuya.com/en/docs/iot/tysw012-round-universal-remote-control
+
+defaults:
+  ir_tx_pin_number: GPIO14
+  ir_rx_pin_number: GPIO5
+  key_pin: GPIO13
+  led_pin: GPIO4
+
+esphome:
+  comment: TYSW-012 Round Universal Remote Control
+
+packages:
+  - !include
+    file: ir_rx.yaml
+    vars:
+      ir_rx_pin:
+        number: ${ir_rx_pin_number}
+        inverted: true
+        mode:
+          input: true
+          pullup: true
+  - !include
+    file: ir_tx.yaml
+    vars:
+      ir_tx_pin: ${ir_tx_pin_number}
+
+binary_sensor:
+  - id: btn_key
+    platform: gpio
+    pin:
+      number: ${key_pin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    name: Key
+    entity_category: diagnostic
+
+output:
+  - id: out_led
+    platform: esp8266_pwm
+    pin:
+      number: ${led_pin}
+      inverted: true
+    # frequency: 4882Hz # 14-bit
+
+light:
+  - id: light_led
+    platform: monochromatic
+    output: out_led
+    name: "Status"
+    restore_mode: ALWAYS_OFF
+    entity_category: config
