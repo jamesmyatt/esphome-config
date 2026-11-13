@@ -1,6 +1,6 @@
 defaults:
   ir_tx_id: ir_tx
-  ir_tx_pin: GPIO14
+  ir_tx_pin: null
 
 remote_transmitter:
   - id: ${ir_tx_id}

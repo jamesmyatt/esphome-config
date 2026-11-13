@@ -1,6 +1,6 @@
 defaults:
   ir_rx_id: ir_rx
-  ir_rx_pin: GPIO5
+  ir_rx_pin: null
 
 remote_receiver:
   - id: ${ir_rx_id}
