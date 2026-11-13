@@ -1,0 +1,56 @@
+# https://www.espboards.dev/esp32/esp32-c6-super-mini/
+# https://mischianti.org/esp32-c6-supermini-high-resolution-pinout-datasheet-schema-and-specs/
+# Chip is ESP32-C6FH4 (4 MB embedded flash)
+
+esp32:
+  variant: esp32c6
+  board: esp32-c6-devkitc-1
+  framework:
+    type: esp-idf
+
+# Buses
+uart:
+  - id: bus_uart0
+    tx_pin: GPIO16
+    rx_pin: GPIO17
+    baud_rate: 115200
+
+# Sensors
+binary_sensor:
+  - id: btn_boot
+    platform: gpio
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: true
+      ignore_strapping_warning: true
+    name: "Boot"
+    filters:
+      - delayed_off: 10ms # debounce
+    entity_category: diagnostic
+
+# Lights
+output:
+  - id: out_blue
+    platform: ledc
+    pin:
+      number: GPIO15
+      ignore_strapping_warning: true
+    frequency: 4882Hz # 14-bit
+
+light:
+  - id: led_blue
+    platform: monochromatic
+    output: out_blue
+    name: "Blue"
+    restore_mode: ALWAYS_OFF
+    entity_category: config
+  - id: led_builtin
+    platform: esp32_rmt_led_strip
+    name: "Status"
+    channel_colors: GRB
+    pin: GPIO8
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    entity_category: config
