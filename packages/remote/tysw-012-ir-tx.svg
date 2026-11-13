@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 590" width="880" height="590" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <title>TYSW-012 IR transmitter</title>
+  <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f2937"/></marker></defs>
+  <rect width="880" height="590" fill="#ffffff"/>
+  <text x="24" y="34" font-weight="bold" font-size="16" fill="#111827">TYSW-012 · IR transmitter</text>
+  <text x="24" y="54" font-size="12" fill="#6b7280">Redrawn from the Tuya schematic · values checked on board photos</text>
+  <g stroke="#1f2937" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="90" y1="90" x2="760" y2="90"/>
+    <line x1="490" y1="90" x2="490" y2="68"/>
+    <line x1="476" y1="68" x2="504" y2="68" stroke="#b91c1c"/>
+    <line x1="90" y1="90" x2="90" y2="140"/>
+    <line x1="76" y1="140" x2="104" y2="140"/>
+    <path d="M76,155 Q90,145 104,155"/>
+    <line x1="90" y1="150" x2="90" y2="180"/>
+    <line x1="90" y1="180" x2="90" y2="188"/><line x1="76" y1="188" x2="104" y2="188"/><line x1="82" y1="194" x2="98" y2="194"/><line x1="87" y1="200" x2="93" y2="200"/>
+    <line x1="220" y1="90" x2="220" y2="105"/>
+    <polyline points="220,105 228,110.714 212,116.429 228,122.143 212,127.857 228,133.571 212,139.286 220,145"/>
+    <line x1="220" y1="145" x2="220" y2="235"/>
+    <polygon points="208,235 232,235 220,255" fill="#1f2937"/><line x1="208" y1="255" x2="232" y2="255"/><line x1="238" y1="237" x2="250" y2="247" marker-end="url(#arr)"/><line x1="238" y1="246" x2="250" y2="256" marker-end="url(#arr)"/>
+    <line x1="220" y1="255" x2="220" y2="300"/>
+    <circle cx="215" cy="320" r="24"/>
+    <line x1="220" y1="300" x2="206" y2="313"/>
+    <line x1="206" y1="306" x2="206" y2="334"/>
+    <line x1="206" y1="327" x2="220" y2="340" marker-end="url(#arr)"/>
+    <line x1="220" y1="340" x2="220" y2="372"/>
+    <line x1="220" y1="372" x2="220" y2="380"/><line x1="206" y1="380" x2="234" y2="380"/><line x1="212" y1="386" x2="228" y2="386"/><line x1="217" y1="392" x2="223" y2="392"/>
+    <line x1="206" y1="320" x2="186" y2="320"/>
+    <polyline points="136,320 143.143,312 150.286,328 157.429,312 164.571,328 171.714,312 178.857,328 186,320"/>
+    <line x1="136" y1="320" x2="136" y2="430"/>
+    <line x1="400" y1="90" x2="400" y2="105"/>
+    <polyline points="400,105 408,110.714 392,116.429 408,122.143 392,127.857 408,133.571 392,139.286 400,145"/>
+    <line x1="400" y1="145" x2="400" y2="175"/>
+    <polygon points="388,175 412,175 400,195" fill="#1f2937"/><line x1="388" y1="195" x2="412" y2="195"/><line x1="418" y1="177" x2="430" y2="187" marker-end="url(#arr)"/><line x1="418" y1="186" x2="430" y2="196" marker-end="url(#arr)"/>
+    <line x1="400" y1="195" x2="400" y2="235"/>
+    <polygon points="388,235 412,235 400,255" fill="#1f2937"/><line x1="388" y1="255" x2="412" y2="255"/><line x1="418" y1="237" x2="430" y2="247" marker-end="url(#arr)"/><line x1="418" y1="246" x2="430" y2="256" marker-end="url(#arr)"/>
+    <line x1="400" y1="255" x2="400" y2="300"/>
+    <circle cx="395" cy="320" r="24"/>
+    <line x1="400" y1="300" x2="386" y2="313"/>
+    <line x1="386" y1="306" x2="386" y2="334"/>
+    <line x1="386" y1="327" x2="400" y2="340" marker-end="url(#arr)"/>
+    <line x1="400" y1="340" x2="400" y2="372"/>
+    <line x1="400" y1="372" x2="400" y2="380"/><line x1="386" y1="380" x2="414" y2="380"/><line x1="392" y1="386" x2="408" y2="386"/><line x1="397" y1="392" x2="403" y2="392"/>
+    <line x1="386" y1="320" x2="366" y2="320"/>
+    <polyline points="316,320 323.143,312 330.286,328 337.429,312 344.571,328 351.714,312 358.857,328 366,320"/>
+    <line x1="316" y1="320" x2="316" y2="430"/>
+    <line x1="580" y1="90" x2="580" y2="105"/>
+    <polyline points="580,105 588,110.714 572,116.429 588,122.143 572,127.857 588,133.571 572,139.286 580,145"/>
+    <line x1="580" y1="145" x2="580" y2="175"/>
+    <polygon points="568,175 592,175 580,195" fill="#1f2937"/><line x1="568" y1="195" x2="592" y2="195"/><line x1="598" y1="177" x2="610" y2="187" marker-end="url(#arr)"/><line x1="598" y1="186" x2="610" y2="196" marker-end="url(#arr)"/>
+    <line x1="580" y1="195" x2="580" y2="235"/>
+    <polygon points="568,235 592,235 580,255" fill="#1f2937"/><line x1="568" y1="255" x2="592" y2="255"/><line x1="598" y1="237" x2="610" y2="247" marker-end="url(#arr)"/><line x1="598" y1="246" x2="610" y2="256" marker-end="url(#arr)"/>
+    <line x1="580" y1="255" x2="580" y2="300"/>
+    <circle cx="575" cy="320" r="24"/>
+    <line x1="580" y1="300" x2="566" y2="313"/>
+    <line x1="566" y1="306" x2="566" y2="334"/>
+    <line x1="566" y1="327" x2="580" y2="340" marker-end="url(#arr)"/>
+    <line x1="580" y1="340" x2="580" y2="372"/>
+    <line x1="580" y1="372" x2="580" y2="380"/><line x1="566" y1="380" x2="594" y2="380"/><line x1="572" y1="386" x2="588" y2="386"/><line x1="577" y1="392" x2="583" y2="392"/>
+    <line x1="566" y1="320" x2="546" y2="320"/>
+    <polyline points="496,320 503.143,312 510.286,328 517.429,312 524.571,328 531.714,312 538.857,328 546,320"/>
+    <line x1="496" y1="320" x2="496" y2="430"/>
+    <line x1="760" y1="90" x2="760" y2="105"/>
+    <polyline points="760,105 768,110.714 752,116.429 768,122.143 752,127.857 768,133.571 752,139.286 760,145"/>
+    <line x1="760" y1="145" x2="760" y2="175"/>
+    <polygon points="748,175 772,175 760,195" fill="#1f2937"/><line x1="748" y1="195" x2="772" y2="195"/><line x1="778" y1="177" x2="790" y2="187" marker-end="url(#arr)"/><line x1="778" y1="186" x2="790" y2="196" marker-end="url(#arr)"/>
+    <line x1="760" y1="195" x2="760" y2="235"/>
+    <polygon points="748,235 772,235 760,255" fill="#1f2937"/><line x1="748" y1="255" x2="772" y2="255"/><line x1="778" y1="237" x2="790" y2="247" marker-end="url(#arr)"/><line x1="778" y1="246" x2="790" y2="256" marker-end="url(#arr)"/>
+    <line x1="760" y1="255" x2="760" y2="300"/>
+    <circle cx="755" cy="320" r="24"/>
+    <line x1="760" y1="300" x2="746" y2="313"/>
+    <line x1="746" y1="306" x2="746" y2="334"/>
+    <line x1="746" y1="327" x2="760" y2="340" marker-end="url(#arr)"/>
+    <line x1="760" y1="340" x2="760" y2="372"/>
+    <line x1="760" y1="372" x2="760" y2="380"/><line x1="746" y1="380" x2="774" y2="380"/><line x1="752" y1="386" x2="768" y2="386"/><line x1="757" y1="392" x2="763" y2="392"/>
+    <line x1="746" y1="320" x2="726" y2="320"/>
+    <polyline points="676,320 683.143,312 690.286,328 697.429,312 704.571,328 711.714,312 718.857,328 726,320"/>
+    <line x1="676" y1="320" x2="676" y2="430"/>
+    <line x1="112" y1="430" x2="676" y2="430"/>
+  </g>
+  <g fill="#1f2937">
+    <circle cx="136" cy="430" r="4"/>
+    <circle cx="220" cy="90" r="4"/>
+    <circle cx="316" cy="430" r="4"/>
+    <circle cx="400" cy="90" r="4"/>
+    <circle cx="490" cy="90" r="4"/>
+    <circle cx="496" cy="430" r="4"/>
+    <circle cx="580" cy="90" r="4"/>
+  </g>
+  <text x="490" y="58" text-anchor="middle" fill="#b91c1c">5VF</text>
+  <text x="79" y="135" font-size="12" fill="#111827">+</text>
+  <text x="110" y="143" font-weight="bold" fill="#111827">C8</text>
+  <text x="110" y="159" fill="#111827">470 µF</text>
+  <text x="234" y="122" font-weight="bold" fill="#111827">R6</text>
+  <text x="234" y="138" fill="#111827">12 Ω</text>
+  <text x="256" y="252" font-weight="bold" fill="#111827">D8</text>
+  <text x="244" y="318" font-weight="bold" fill="#111827">Q1</text>
+  <text x="244" y="334" fill="#111827">8050</text>
+  <text x="161" y="300" text-anchor="middle" fill="#111827"><tspan font-weight="bold">R9</tspan> 1 kΩ</text>
+  <text x="414" y="122" font-weight="bold" fill="#111827">R13</text>
+  <text x="414" y="138" fill="#111827">5.6 Ω</text>
+  <text x="436" y="192" font-weight="bold" fill="#111827">D5</text>
+  <text x="436" y="252" font-weight="bold" fill="#111827">D9</text>
+  <text x="424" y="318" font-weight="bold" fill="#111827">Q2</text>
+  <text x="424" y="334" fill="#111827">8050</text>
+  <text x="341" y="300" text-anchor="middle" fill="#111827"><tspan font-weight="bold">R10</tspan> 1 kΩ</text>
+  <text x="594" y="122" font-weight="bold" fill="#111827">R14</text>
+  <text x="594" y="138" fill="#111827">5.6 Ω</text>
+  <text x="616" y="192" font-weight="bold" fill="#111827">D6</text>
+  <text x="616" y="252" font-weight="bold" fill="#111827">D10</text>
+  <text x="604" y="318" font-weight="bold" fill="#111827">Q3</text>
+  <text x="604" y="334" fill="#111827">8050</text>
+  <text x="521" y="300" text-anchor="middle" fill="#111827"><tspan font-weight="bold">R11</tspan> 1 kΩ</text>
+  <text x="774" y="122" font-weight="bold" fill="#111827">R15</text>
+  <text x="774" y="138" fill="#111827">5.6 Ω</text>
+  <text x="796" y="192" font-weight="bold" fill="#111827">D7</text>
+  <text x="796" y="252" font-weight="bold" fill="#111827">D11</text>
+  <text x="784" y="318" font-weight="bold" fill="#111827">Q4</text>
+  <text x="784" y="334" fill="#111827">8050</text>
+  <text x="701" y="300" text-anchor="middle" fill="#111827"><tspan font-weight="bold">R12</tspan> 1 kΩ</text>
+  <polygon points="112,420 72,420 60,430 72,440 112,440" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+  <text x="88" y="435" text-anchor="middle" font-weight="bold" fill="#1d4ed8">IO14</text>
+  <text x="60" y="458" font-size="11" fill="#6b7280">from MCU · also TP6</text>
+  <text x="24" y="496" font-size="12" fill="#374151">Each leg: 5VF → resistor → IR LED(s) → 8050 low-side switch. IO14 high turns the LEDs on (not inverted).</text>
+  <text x="24" y="516" font-size="12" fill="#374151">Rough peak current (LED Vf ≈ 1.4 V, Vce(sat) ≈ 0.3 V): ≈ 0.34 A per 5.6 Ω leg, ≈ 0.27 A for the 12 Ω leg, ≈ 1.3 A total.</text>
+  <text x="24" y="536" font-size="12" fill="#374151">Base drive ≈ 2.6 mA per transistor at 3.3 V, so about 10 mA from the GPIO. C8 supplies the current peaks.</text>
+  <text x="24" y="556" font-size="12" fill="#6b7280">R13–R15 are marked 5R6 (5.6 Ω) on the board; the schematic image appears to say 3.6R. Q1–Q4 are marked J3Y (S8050).</text>
+</svg>
