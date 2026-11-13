@@ -17,9 +17,6 @@ packages:
       ir_rx_pin:
         number: ${ir_rx_pin_number}
         inverted: true
-        mode:
-          input: true
-          pullup: true
   - !include
     file: ir_tx.yaml
     vars:
@@ -31,9 +28,6 @@ binary_sensor:
     pin:
       number: ${key_pin}
       inverted: true
-      mode:
-        input: true
-        pullup: true
     name: Key
     entity_category: diagnostic
 
