@@ -5,3 +5,5 @@ packages:
 dashboard_import:
   package_import_url: github://jamesmyatt/esphome-config/devices/remote/tysw-012.yaml@main
   import_full_config: false
+
+improv_serial:
