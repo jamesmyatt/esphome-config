@@ -93,7 +93,8 @@ binary_sensor:
     name: "Key 2"
     filters:
       - delayed_off: 10ms
-  - id: key_3
+  - # Also connected to bottom LED
+    id: key_3
     platform: gpio
     pin:
       number: GPIO19
@@ -101,7 +102,6 @@ binary_sensor:
     name: "Key 3"
     filters:
       - delayed_off: 10ms
-    # Also connected to bottom LED
   - id: key_4
     platform: gpio
     pin:
@@ -138,6 +138,7 @@ binary_sensor:
       - delayed_off: 10ms
 
 output:
+  # Bottom LED is shared with Key 3
   - # Top LED
     id: out_builtin
     platform: ledc
@@ -145,7 +146,6 @@ output:
       number: GPIO22
       inverted: true
     frequency: 4882Hz # 14-bit
-  # Bottom LED is shared with Key 3
 
 light:
   - # Top LED - called "Green" in squeezelite-esp32 config

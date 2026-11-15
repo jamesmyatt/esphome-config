@@ -1,3 +1,7 @@
+# Git files
+**/.gitignore
+!/.gitignore
+
 # VS Code
 .vscode/*
 !.vscode/extensions.json
