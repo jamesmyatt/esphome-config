@@ -16,7 +16,6 @@ api:
 ota:
   - id: ota_esphome
     platform: esphome
-    encryption:
 
 time:
   - id: esptime

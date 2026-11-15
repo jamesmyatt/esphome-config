@@ -1,0 +1,21 @@
+# UF0-R1 / TYSW_012_ZK_MAIN_V1.1
+# https://developer.tuya.com/en/docs/iot/tysw012-round-universal-remote-control
+# https://developer.tuya.com/en/docs/iot/wifie3smodule
+# https://templates.blakadder.com/ytf_ir_bridge.html
+
+esphome:
+  name: tysw-012
+  friendly_name: TYSW-012
+  name_add_mac_suffix: true
+  comment: TYSW-012 Round Universal IR Remote Control
+  min_version: 2026.9.0
+
+  project:
+    name: "jamesmyatt.tysw-012"
+    version: "2.0.0"
+
+packages:
+  - !include ../../packages/common/base.yaml
+  - !include ../../packages/common/wifi.yaml
+  - !include ../../boards/tywe3s/base.yaml
+  - !include ../../packages/remote/tysw-012.yaml
