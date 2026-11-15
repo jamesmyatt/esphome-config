@@ -16,6 +16,11 @@ repos:
       - id: check-toml
       - id: check-yaml
         args: [--unsafe] # since esphome uses custom tags
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+        args: [--strict]
   - repo: https://github.com/rbubley/mirrors-prettier
     rev: v3.10.1
     hooks:
