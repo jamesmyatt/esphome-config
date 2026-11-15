@@ -16,6 +16,6 @@ esphome:
 
 packages:
   - !include ../../packages/common/base.yaml
-  - !include ../../packages/common/wifi.yaml
+  - !include ../../packages/wifi/sensors.yaml
   - !include ../../boards/tywe3s/base.yaml
   - !include ../../packages/remote/tysw-012.yaml
