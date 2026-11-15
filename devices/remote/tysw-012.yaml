@@ -10,12 +10,8 @@ esphome:
   comment: TYSW-012 Round Universal IR Remote Control
   min_version: 2026.9.0
 
-  project:
-    name: "jamesmyatt.tysw-012"
-    version: "2.0.0"
-
 packages:
   - !include ../../packages/common/base.yaml
-  - !include ../../packages/common/wifi.yaml
+  - !include ../../packages/wifi/sensors.yaml
   - !include ../../boards/tywe3s/base.yaml
   - !include ../../packages/remote/tysw-012.yaml
