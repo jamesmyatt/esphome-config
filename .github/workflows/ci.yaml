@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   python:
     name: Python environment
@@ -33,3 +37,47 @@ jobs:
 
       - name: Run pre-commit
         run: uv run --locked pre-commit run --all-files --show-diff-on-failure
+
+  discover:
+    name: Find devices
+    runs-on: ubuntu-latest
+    outputs:
+      devices: ${{ steps.find.outputs.devices }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Find factory configs
+        id: find
+        run: |
+          devices=$(find devices -name '*.factory.yaml' | sort | jq -Rsc 'split("\n")[:-1]')
+          echo "devices=$devices" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build ${{ matrix.device }}
+    needs: discover
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        device: ${{ fromJson(needs.discover.outputs.devices) }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@v10.3.3
+
+      - name: Create environment
+        run: uv sync --locked
+
+      - uses: actions/cache@v6
+        with:
+          path: ~/.platformio
+          key: platformio-${{ runner.os }}-${{ hashFiles('uv.lock') }}
+
+      - name: Compile
+        env:
+          DEVICE: ${{ matrix.device }}
+        run: uv run --locked esphome compile "$DEVICE"
