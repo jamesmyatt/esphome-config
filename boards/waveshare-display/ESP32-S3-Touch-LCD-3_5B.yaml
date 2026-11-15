@@ -101,17 +101,6 @@ time: # See https://esphome.io/components/time/pcf85063/#full-configuration-exam
 
 # Sensors
 binary_sensor:
-  - id: btn_boot
-    platform: gpio
-    pin:
-      number: GPIO0 # shared with IMU_INT1
-      mode: INPUT_PULLUP
-      inverted: true
-      ignore_strapping_warning: true # built-in
-    name: "Boot"
-    filters:
-      - delayed_off: 10ms # debounce
-    entity_category: diagnostic
   # - id: btn_power
   #   platform: gpio
   #   pin:
@@ -123,6 +112,17 @@ binary_sensor:
   #     - delayed_off: 20ms # debounce
   #   entity_category: diagnostic
   #   disabled_by_default: true
+  - id: btn_boot
+    platform: gpio
+    pin:
+      number: GPIO0 # shared with IMU_INT1
+      mode: INPUT_PULLUP
+      inverted: true
+      ignore_strapping_warning: true # built-in
+    name: "Boot"
+    filters:
+      - delayed_off: 10ms # debounce
+    entity_category: diagnostic
 
 # Lights
 output:
