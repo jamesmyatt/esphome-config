@@ -1,0 +1,59 @@
+# https://esphome.io/components/cc1101
+# See https://esphome.io/components/cc1101/#1--dual-pin-wiring-recommended
+# See https://esphome.io/components/ir_rf_proxy/#using-a-cc1101-or-other-rf-front-end
+
+defaults:
+  rf_rx_id: rf_rx
+  rf_tx_id: rf_tx
+  rf_frequency: 433.92MHz
+  cc1101_id: cc1101_radio
+  cc1101_spi_bus: null
+  cc1101_cs_pin: null
+  cc1101_gdo0_pin: null
+  cc1101_gdo2_pin: null
+
+cc1101:
+  - id: ${cc1101_id}
+    spi_id: ${cc1101_spi_bus}
+    cs_pin: ${cc1101_cs_pin}
+    frequency: ${rf_frequency}
+
+remote_transmitter:
+  - id: ${rf_tx_id}
+    pin: ${cc1101_gdo0_pin}
+    carrier_duty_percent: 100%
+    on_transmit:
+      then:
+        - cc1101.begin_tx: ${cc1101_id}
+    on_complete:
+      then:
+        - cc1101.set_frequency:
+            id: ${cc1101_id}
+            value: ${rf_frequency}
+        - cc1101.begin_rx: ${cc1101_id}
+
+remote_receiver:
+  - id: ${rf_rx_id}
+    pin: ${cc1101_gdo2_pin}
+    dump: [] # doesn't affect proxy
+
+radio_frequency:
+  - id: ${rf_tx_id}_proxy
+    platform: ir_rf_proxy
+    name: RF Transmitter
+    frequency: ${rf_frequency}
+    remote_transmitter_id: ${rf_tx_id}
+    on_control:
+      then:
+        - if:
+            condition:
+              lambda: "return x.get_frequency().has_value() && *x.get_frequency() > 0;"
+            then:
+              - cc1101.set_frequency:
+                  id: ${cc1101_id}
+                  value: !lambda "return *x.get_frequency();"
+  - id: ${rf_rx_id}_proxy
+    platform: ir_rf_proxy
+    name: RF Receiver
+    frequency: ${rf_frequency}
+    remote_receiver_id: ${rf_rx_id}

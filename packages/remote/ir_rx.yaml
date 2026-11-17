@@ -1,3 +1,4 @@
+# Note that ir_rx_pin is usually inverted
 defaults:
   ir_rx_id: ir_rx
   ir_rx_pin: null
@@ -6,7 +7,7 @@ remote_receiver:
   - id: ${ir_rx_id}
     pin: ${ir_rx_pin}
     # tolerance: 55%
-    dump: all
+    dump: [] # doesn't affect proxy
 
 infrared:
   - id: ${ir_rx_id}_proxy
