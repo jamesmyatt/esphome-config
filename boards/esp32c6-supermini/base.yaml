@@ -2,15 +2,17 @@
 # https://mischianti.org/esp32-c6-supermini-high-resolution-pinout-datasheet-schema-and-specs/
 # Chip is ESP32-C6FH4 (4 MB embedded flash)
 
+esphome:
+  min_version: 2026.8.0
+
 esp32:
   variant: esp32c6
-  board: esp32-c6-devkitc-1
   framework:
     type: esp-idf
 
 # Buses
 uart:
-  - id: bus_uart0
+  - id: bus_uart0 # on RX/TX pins
     tx_pin: GPIO16
     rx_pin: GPIO17
     baud_rate: 115200
@@ -49,7 +51,9 @@ light:
     platform: esp32_rmt_led_strip
     name: "Status"
     channel_colors: GRB
-    pin: GPIO8
+    pin:
+      number: GPIO8
+      ignore_strapping_warning: true
     num_leds: 1
     chipset: ws2812
     restore_mode: ALWAYS_OFF
