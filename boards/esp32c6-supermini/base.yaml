@@ -2,6 +2,13 @@
 # https://mischianti.org/esp32-c6-supermini-high-resolution-pinout-datasheet-schema-and-specs/
 # Chip is ESP32-C6FH4 (4 MB embedded flash)
 
+# 5V pin is VBUS; VBUS & BAT diode-ORed into LDO, so a diode drop on battery
+# BAT: TP4054 charger (~100mA) only
+#   - no protection (over-discharge, short)
+#   - no voltage sense
+#   - charge LED not on a GPIO; blinks with no battery
+# GPIO21-23 on test pads only
+
 esphome:
   min_version: 2026.8.0
 
