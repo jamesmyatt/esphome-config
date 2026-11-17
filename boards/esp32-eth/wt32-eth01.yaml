@@ -1,6 +1,4 @@
 # SoM is WT32-S1
-# Do not use ethernet and wifi simulaneously
-
 esp32:
   variant: esp32
   framework:
